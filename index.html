@@ -1,0 +1,1315 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>수업 도구 체험실</title>
+<meta name="description" content="크롬북 수업 도구를 교사·학생 화면으로 직접 눌러 보며 익히는 체험용 모의 도구 (비공식 · 가상 데이터)">
+<meta property="og:type" content="website">
+<meta property="og:title" content="수업 도구 체험실">
+<meta property="og:description" content="크롬북 수업 도구를 교사·학생 화면으로 직접 눌러 보며 익히는 체험용 모의 도구 (비공식 · 가상 데이터)">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%F0%9F%92%BB%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Do+Hyeon&family=IBM+Plex+Sans+KR:wght@400;500;600;700&family=Noto+Sans+KR:wght@400;500;700&display=swap">
+<style>body{margin:0}[hidden]{display:none!important}</style>
+<style>
+:root{
+  --bg:#F2F4EF; --bg-2:#E5EAE3; --surface:#FFFFFF; --ink:#16221C; --ink-2:#4B5B52; --line:#D6DDD6;
+  --accent:#2D684C; --accent-ink:#FFFFFF; --accent-soft:#DCEBE2; --chalk:#F1C646; --chalk-ink:#3A2E00;
+  --bezel:#23282C; --bezel-edge:#23282C;
+  --display:"Do Hyeon","IBM Plex Sans KR","Apple SD Gothic Neo","Malgun Gothic",sans-serif;
+  --sans:"IBM Plex Sans KR","Apple SD Gothic Neo","Malgun Gothic","Noto Sans KR",sans-serif;
+  --os-font:"Noto Sans KR","Roboto","Apple SD Gothic Neo","Malgun Gothic",sans-serif;
+  color-scheme:light;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#0E1411; --bg-2:#18211C; --surface:#161E19; --ink:#E4ECE6; --ink-2:#9DAEA4; --line:#2A352F;
+    --accent:#74C59B; --accent-ink:#08140D; --accent-soft:#1E3328; --chalk:#E7BE45; --chalk-ink:#2A2100;
+    --bezel:#070909; --bezel-edge:#3A4248; color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#0E1411; --bg-2:#18211C; --surface:#161E19; --ink:#E4ECE6; --ink-2:#9DAEA4; --line:#2A352F;
+  --accent:#74C59B; --accent-ink:#08140D; --accent-soft:#1E3328; --chalk:#E7BE45; --chalk-ink:#2A2100;
+  --bezel:#070909; --bezel-edge:#3A4248; color-scheme:dark;
+}
+*,*::before,*::after{box-sizing:border-box}
+html,body{height:100%}
+body{background:var(--bg); color:var(--ink); font-family:var(--sans); font-size:15px; line-height:1.55; -webkit-font-smoothing:antialiased}
+button{font:inherit; color:inherit; cursor:pointer}
+button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible{outline:2px solid #1A73E8; outline-offset:2px}
+#root{min-height:100%; display:flex; flex-direction:column}
+.boot{padding:48px 16px; text-align:center; color:var(--ink-2)}
+
+/* ---------- landing ---------- */
+.lp{width:100%; max-width:1120px; margin:0 auto; padding:40px 16px 56px; display:flex; flex-direction:column; gap:36px}
+.lp-eyebrow{display:inline-flex; align-items:center; gap:8px; font-size:13px; font-weight:600; letter-spacing:.06em; color:var(--accent)}
+.lp-eyebrow i{width:18px; height:3px; border-radius:2px; background:var(--chalk)}
+.lp h1{font-family:var(--display); font-weight:400; font-size:clamp(44px,7vw,76px); line-height:1.02; margin:10px 0 14px; letter-spacing:-.01em; text-wrap:balance}
+.lp h1 em{font-style:normal; background:linear-gradient(transparent 62%, var(--chalk) 62%, var(--chalk) 92%, transparent 92%); padding:0 .06em}
+.lp-lead{font-size:17px; color:var(--ink-2); max-width:44ch; margin:0}
+.entries{display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:16px}
+.entry{position:relative; display:flex; flex-direction:column; gap:12px; text-align:left; padding:16px; border-radius:18px; border:1px solid var(--line); background:var(--surface); transition:transform .15s ease, border-color .15s ease, box-shadow .15s ease}
+.entry:hover{transform:translateY(-2px); border-color:var(--accent); box-shadow:0 10px 28px -18px rgba(20,40,30,.45)}
+.entry .ill{aspect-ratio:16/10; width:100%; border-radius:12px; background:var(--bg-2); display:grid; place-items:center; overflow:hidden}
+.entry .ill svg{width:88%; height:auto}
+.entry h2{font-family:var(--display); font-weight:400; font-size:30px; line-height:1.1; margin:4px 0 0}
+.entry p{margin:0; color:var(--ink-2); font-size:14.5px}
+.entry .go{margin-top:auto; display:flex; align-items:center; gap:6px; font-weight:600; color:var(--accent)}
+.entry .tag{position:absolute; top:26px; right:26px; background:var(--chalk); color:var(--chalk-ink); font-size:12px; font-weight:700; padding:3px 9px; border-radius:999px}
+.feat h3{font-family:var(--display); font-weight:400; font-size:26px; margin:0 0 12px}
+.feat-wrap{overflow-x:auto; border:1px solid var(--line); border-radius:14px; background:var(--surface)}
+.feat table{width:100%; border-collapse:collapse; min-width:640px; font-size:14px}
+.feat th,.feat td{padding:11px 14px; text-align:left; vertical-align:top; border-bottom:1px solid var(--line)}
+.feat tr:last-child td{border-bottom:0}
+.feat thead th{font-size:12.5px; letter-spacing:.04em; color:var(--ink-2); font-weight:600; background:var(--bg-2)}
+.feat tbody th{font-weight:600; white-space:nowrap}
+.lp-note{font-size:13px; color:var(--ink-2); border-top:1px solid var(--line); padding-top:16px; margin:0; max-width:80ch}
+
+/* ---------- sim shell ---------- */
+.bar{position:sticky; top:env(safe-area-inset-top,0px); z-index:100; display:flex; align-items:center; gap:12px; flex-wrap:wrap; padding:8px 16px; background:var(--surface); border-bottom:1px solid var(--line)}
+.brand{display:flex; align-items:center; gap:8px; background:none; border:0; padding:4px 0; font-family:var(--display); font-size:21px}
+.brand svg{width:22px; height:22px; color:var(--accent)}
+.seg{display:flex; background:var(--bg-2); border-radius:12px; padding:3px; gap:2px}
+.seg button{border:0; background:transparent; padding:6px 14px; border-radius:9px; font-size:14px; font-weight:500; color:var(--ink-2); display:flex; align-items:center; gap:6px}
+.seg button svg{width:16px; height:16px}
+.seg button[aria-pressed="true"]{background:var(--surface); color:var(--ink); box-shadow:0 1px 3px rgba(0,0,0,.12)}
+.bar-r{margin-left:auto; display:flex; align-items:center; gap:10px}
+.sim-tag{font-size:12px; color:var(--ink-2); border:1px dashed var(--line); padding:3px 8px; border-radius:8px}
+.ghost{border:1px solid var(--line); background:var(--surface); border-radius:10px; padding:6px 12px; font-size:14px; display:flex; align-items:center; gap:6px}
+.ghost svg{width:16px; height:16px}
+.ghost:hover{border-color:var(--accent)}
+.stage{flex:1; min-height:0; display:flex; gap:16px; padding:12px 16px 16px}
+.stage.teacher .devcol{max-width:1320px; margin:0 auto}
+.devcol{flex:1; min-width:0; display:flex; flex-direction:column; gap:8px}
+.devlabel{display:flex; align-items:center; gap:8px; font-size:13.5px; font-weight:600; color:var(--ink-2)}
+.devlabel b{font-family:var(--display); font-weight:400; font-size:19px; color:var(--ink)}
+.devlabel .dot{width:8px; height:8px; border-radius:50%; background:var(--accent)}
+.devlabel .dot.s{background:var(--chalk)}
+.dev{flex:1; min-height:520px; display:flex; flex-direction:column; background:var(--bezel); border:1px solid var(--bezel-edge); border-radius:18px; padding:14px 10px 10px; position:relative}
+.dev::before{content:""; position:absolute; top:5px; left:50%; width:5px; height:5px; margin-left:-2.5px; border-radius:50%; background:#3b4247}
+
+/* virtual teacher remote */
+.remote{width:300px; flex:none; display:flex; flex-direction:column; gap:14px; padding:16px; border-radius:16px; border:1px solid var(--line); background:var(--surface); overflow:auto; align-self:stretch}
+.r-head{display:flex; gap:10px; align-items:center}
+.r-av{width:40px; height:40px; border-radius:50%; background:var(--accent); color:var(--accent-ink); display:grid; place-items:center; font-family:var(--display); font-size:20px; flex:none}
+.r-head b{font-family:var(--display); font-weight:400; font-size:22px; display:block; line-height:1.1}
+.r-head small{color:var(--ink-2); font-size:12.5px; line-height:1.4; display:block}
+.r-group{display:flex; flex-direction:column; gap:7px}
+.r-group > span{font-size:12px; font-weight:600; letter-spacing:.04em; color:var(--ink-2)}
+.r-btns{display:flex; flex-wrap:wrap; gap:6px}
+.rbtn{border:1px solid var(--line); background:var(--bg); border-radius:10px; padding:7px 11px; font-size:13.5px; font-weight:500; display:inline-flex; align-items:center; gap:6px}
+.rbtn svg{width:15px; height:15px}
+.rbtn:hover{border-color:var(--accent)}
+.rbtn[aria-pressed="true"]{background:var(--accent); color:var(--accent-ink); border-color:transparent}
+.rbtn.primary{background:var(--accent); color:var(--accent-ink); border-color:transparent; justify-content:center; padding:10px 12px}
+.rbtn.warn{color:#B3261E}
+.rbtn:disabled{opacity:.45; cursor:default}
+.r-info{font-size:13px; background:var(--bg-2); border-radius:10px; padding:9px 11px; display:flex; flex-direction:column; gap:2px}
+.r-info b{font-variant-numeric:tabular-nums; letter-spacing:.06em}
+.r-check{display:flex; gap:8px; align-items:flex-start; font-size:13.5px}
+.r-check input{margin-top:4px; accent-color:var(--accent)}
+
+@media (max-width:1100px){
+  .stage.split{flex-direction:column}
+  .stage.split .dev{min-height:560px}
+}
+@media (max-width:900px){
+  .entries{grid-template-columns:1fr}
+  .stage.student{flex-direction:column}
+  .remote{width:auto}
+  .sim-tag{display:none}
+}
+@media (max-width:560px){
+  .seg button{padding:6px 9px}
+  .seg button svg{display:none}
+  .dev{padding:12px 6px 6px; border-radius:14px}
+}
+@media (prefers-reduced-motion: reduce){
+  *{transition:none!important; animation:none!important}
+}
+
+/* ---------- simulated ChromeOS (fixed light look, independent of page theme) ---------- */
+.scr{
+  --os-ink:#1F1F1F; --os-ink-2:#5E6368; --os-line:#DADCE0; --os-primary:#0B57D0;
+  flex:1; min-height:0; position:relative; overflow:hidden; border-radius:6px; container-type:inline-size;
+  font-family:var(--os-font); color:var(--os-ink); line-height:1.45; color-scheme:light;
+  font-size:clamp(11.5px, 1.1cqi + 4px, 14px);
+  background:#7FA7C9 radial-gradient(120% 90% at 15% 110%, #F5C98B 0%, rgba(245,201,139,0) 55%), linear-gradient(160deg,#5C8DBE 0%,#9DB9D6 55%,#E9D6C0 100%);
+}
+:where(.scr) button{color:inherit}
+:where(.scr) svg{flex:none; width:1.15em; height:1.15em}
+.desk{position:absolute; inset:0 0 44px 0}
+.desk.full{inset:0}
+.win{position:absolute; inset:10px 14px; display:flex; flex-direction:column; background:#fff; border-radius:10px; overflow:hidden; box-shadow:0 12px 32px -8px rgba(0,0,0,.35), 0 0 0 1px rgba(0,0,0,.06)}
+.win.max{inset:0; border-radius:0; box-shadow:none}
+.win-t{height:32px; flex:none; display:flex; align-items:center; gap:8px; padding:0 4px 0 10px; background:#D5E4F7; font-size:.86em; color:#1F1F1F}
+.win-t.g{background:#E3EAD0}
+.win-t .ttl{white-space:nowrap; overflow:hidden; text-overflow:ellipsis}
+.win-t .wb{margin-left:auto; display:flex; flex:none}
+.win-t .wb button{width:32px; height:26px; border:0; background:none; border-radius:6px; display:grid; place-items:center; color:#3C4A5C}
+.win-t .wb button:hover{background:rgba(0,0,0,.07)}
+.win-t .wb svg{width:14px; height:14px}
+.appic{width:16px; height:16px; border-radius:50%; flex:none; background:#7B4FD6; display:grid; place-items:center; color:#fff}
+.appic svg{width:10px; height:10px}
+.win-b{flex:1; min-height:0; display:flex; flex-direction:column; position:relative}
+.shelf{position:absolute; left:0; right:0; bottom:0; height:44px; display:flex; align-items:center; padding:0 8px; background:rgba(28,30,34,.62); backdrop-filter:blur(14px); color:#fff; z-index:20}
+.shelf .launch{width:32px; height:32px; border-radius:50%; border:0; background:none; display:grid; place-items:center}
+.shelf .launch i{width:14px; height:14px; border-radius:50%; border:2px solid #fff}
+.shelf .apps{position:absolute; left:50%; transform:translateX(-50%); display:flex; gap:4px}
+.shelf .app{position:relative; width:36px; height:36px; border-radius:50%; border:0; display:grid; place-items:center; background:transparent}
+.shelf .app:hover{background:rgba(255,255,255,.14)}
+.shelf .app .ic{width:26px; height:26px; border-radius:50%; display:grid; place-items:center}
+.shelf .app .ic svg{width:15px; height:15px}
+.shelf .app.open::after{content:""; position:absolute; bottom:1px; left:50%; width:4px; height:3px; margin-left:-2px; border-radius:2px; background:rgba(255,255,255,.7)}
+.shelf .app.act::after{width:12px; margin-left:-6px; background:#fff}
+.tray{margin-left:auto; display:flex; align-items:center; gap:6px}
+.tray .pill2{display:flex; align-items:center; gap:6px; background:rgba(255,255,255,.14); border-radius:16px; padding:3px 10px; font-size:12px; font-variant-numeric:tabular-nums; white-space:nowrap}
+.tray .pill2 svg{width:13px; height:13px}
+@container (max-width:860px){ .tray .hide-s{display:none} .shelf .apps{position:static; transform:none; margin-left:6px} }
+
+/* shared controls */
+.ib{width:32px; height:32px; border:0; border-radius:50%; background:none; display:grid; place-items:center; color:#44474E; flex:none}
+.ib:hover{background:rgba(0,0,0,.06)}
+.ib:disabled{opacity:.35}
+.ib svg{width:18px; height:18px}
+.av{width:30px; height:30px; border-radius:50%; flex:none; display:grid; place-items:center; color:#fff; font-size:.76em; font-weight:700}
+.sw{position:relative; width:40px; height:24px; flex:none; border-radius:12px; border:2px solid #74777F; background:#E0E2EC; padding:0}
+.sw::after{content:""; position:absolute; top:4px; left:4px; width:12px; height:12px; border-radius:50%; background:#74777F; transition:all .15s}
+.sw[aria-checked="true"]{background:#2E6A96; border-color:#2E6A96}
+.sw[aria-checked="true"]::after{left:19px; top:2px; width:16px; height:16px; background:#fff}
+.sw:disabled{opacity:.38}
+.inp{height:40px; border:1px solid #74777F; border-radius:8px; padding:0 12px; font:inherit; color:#1F1F1F; background:#fff; width:100%}
+.inp:focus{outline:2px solid #2E6A96; outline-offset:-1px; border-color:transparent}
+.grow{flex:1}
+.muted{color:var(--os-ink-2)}
+.anchor{position:relative; display:inline-flex}
+.pill{height:36px; border-radius:18px; padding:0 18px; border:0; display:inline-flex; align-items:center; justify-content:center; gap:4px; font-weight:500; font-size:.93em; white-space:nowrap}
+.pill svg{width:18px; height:18px}
+.pill.tonal{background:#CEE5FD; color:#0B2F4E}
+.pill.tonal:hover{background:#BDDAF8}
+.pill.fill{background:#2E6A96; color:#fff}
+.pill.fill:hover{background:#275D84}
+.pill:disabled{background:#E2E2E3; color:#8F9194; cursor:default}
+
+/* teacher: class tools app */
+.ta{flex:1; min-height:0; overflow:auto; background:linear-gradient(180deg,#D5E4F5 0%,#E7EFF8 34%,#EEF2F7 100%)}
+.ta-col{width:min(560px,100%); margin:0 auto; padding:26px 16px 30px; display:flex; flex-direction:column; gap:10px}
+.ta-title{display:flex; align-items:center; justify-content:center; gap:8px; font-size:1.4em; font-weight:400; color:#C0562B; margin:0}
+.ta-title.idle{color:#4A7CB0}
+.ta-title svg{width:1em; height:1em}
+.ta-sub{text-align:center; color:#5E6368; font-size:.87em; margin:4px 0 8px; line-height:1.45}
+.ta-two{display:grid; grid-template-columns:1fr 1fr; gap:10px}
+.ta-flat{width:100%; border:0; background:#FBFCFE; border-radius:14px; padding:14px 16px; display:flex; align-items:center; gap:14px; text-align:left}
+.ta-flat > svg{width:22px; height:22px}
+.ta-flat b{display:block; font-weight:400}
+.ta-flat small{display:block; color:#5E6368; font-size:.84em}
+.ta-flat:hover{background:#F2F6FB}
+.ta-flat.on{background:#D3E3FD}
+.ta-flat.off{opacity:.55}
+.ta-view{background:#FBFCFE; border-radius:16px; padding:14px 14px 0}
+.ta-view .lbl{text-align:center; font-size:.92em; font-weight:500; margin-bottom:9px}
+.ta-view .desc{text-align:center; color:#5E6368; font-size:.85em; margin:9px 0 12px}
+.seg3{display:flex; justify-content:center}
+.seg3 > span{display:inline-flex; background:#EDF0F5; border-radius:18px; padding:2px}
+.seg3 button{height:32px; min-width:74px; padding:0 18px; border:0; border-radius:16px; background:transparent; font-weight:500; font-size:.9em}
+.seg3 button:hover{background:#E2E8F1}
+.seg3 button[aria-pressed="true"]{background:#2E6A96; color:#fff}
+.durbox{background:#EFF3F9; border-radius:12px 12px 0 0; padding:18px 16px 14px; text-align:center}
+.durbox .row{display:flex; align-items:center; justify-content:center; gap:8px}
+.durbox input{width:84px; height:52px; font:inherit; font-size:1.9em; text-align:center; border:1px solid #79747E; border-radius:8px; background:#fff; color:#1F1F1F}
+.durbox .u{font-size:1.4em}
+.durbox small{display:block; color:#5E6368; margin-top:10px; font-size:.86em}
+.durbox small + small{margin-top:2px}
+.viewbox{background:#EFF3F9; border-radius:0 0 12px 12px; padding:14px 16px 16px; margin-top:2px}
+.viewbox .lbl{text-align:center; font-size:.9em; font-weight:500; margin-bottom:8px}
+.viewbox .desc{text-align:center; color:#5E6368; font-size:.85em; margin-top:10px}
+.info{display:flex; gap:12px; align-items:flex-start; background:#E7EFFA; border-radius:12px; padding:12px 14px; font-size:.86em; color:#1B3A57; line-height:1.5}
+.info svg{width:18px; height:18px; flex:none; margin-top:1px}
+.codewin{position:absolute; inset:0; z-index:42; display:flex; flex-direction:column; background:#EDF1F7}
+.codebody{flex:1; min-height:0; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:30px; padding:20px; text-align:center}
+.codebody p{margin:0; font-size:1.35em; font-weight:400}
+.codetiles{display:flex; gap:10px; flex-wrap:wrap; justify-content:center}
+.codetiles i{width:62px; height:76px; border-radius:12px; background:#D3E3FD; display:grid; place-items:center; font-style:normal; font-size:2.4em; font-weight:500; color:#1B2B3A}
+.codetiles .sp{width:20px; background:none}
+.ta-code{align-self:center; display:flex; align-items:center; gap:2px; background:#F7F8FA; border-radius:999px; padding:3px 6px 3px 14px; margin:2px 0 10px; box-shadow:0 1px 2px rgba(20,40,70,.06); font-weight:500}
+.ta-code > svg{width:18px; height:18px; margin-right:6px}
+.ta-code .sep{width:1px; height:22px; background:#DADCE0; margin:0 4px}
+.ta-code .ib{width:34px; height:34px}
+.ta-card{background:#FBFCFE; border-radius:16px}
+.ta-card > .ta-item:first-child{border-radius:16px 16px 0 0}
+.ta-card > .ta-item:last-child{border-radius:0 0 16px 16px}
+.ta-card > .ta-item:only-child{border-radius:16px}
+.ta-item{width:100%; display:flex; align-items:center; gap:18px; padding:13px 18px; border:0; background:none; text-align:left}
+.ta-item + .ta-item{border-top:2px solid #EEF2F7}
+.ta-item:hover{background:#F2F6FB}
+.ta-item > svg{width:22px; height:22px}
+.ta-item .tx{flex:1; min-width:0}
+.ta-item b{display:block; font-weight:500}
+.ta-item small{display:block; color:#5E6368; font-size:.84em}
+.ta-item .chev{width:18px; height:18px}
+.ta-ctrl{display:grid; grid-template-columns:1fr 1fr; gap:10px; padding:10px}
+.ta-big{border:0; border-radius:16px; background:#D5E4F5; color:#1F1F1F; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:5px; padding:12px 8px; font-weight:500; font-size:.92em; min-height:62px}
+.ta-big svg{width:16px; height:16px}
+.ta-big:hover{background:#C8DBF0}
+.ta-big[aria-pressed="true"]{background:#2E6A96; color:#fff}
+.ta-foot{display:flex; align-items:center; gap:12px; padding:10px 12px 12px 16px; border-top:2px solid #EEF2F7; flex-wrap:wrap}
+.ta-foot .tx b{display:block; font-weight:500}
+.ta-foot .tx small{display:block; color:#5E6368; font-size:.84em}
+.ring{width:22px; height:22px; flex:none}
+.ta-head{display:flex; align-items:center; gap:12px; margin:0 0 6px}
+.ta-head h2{margin:0; font-size:1.2em; font-weight:400; flex:1}
+.ta-back{width:40px; height:40px; border-radius:50%; border:0; background:#DCE6F2; display:grid; place-items:center}
+.ta-back:hover{background:#CFDDEE}
+.ta-back svg{width:20px; height:20px}
+.ta-row{display:flex; align-items:center; gap:14px; padding:12px 10px 12px 16px; background:#FBFCFE; border-radius:14px; min-width:0}
+.ta-rows{display:flex; flex-direction:column; gap:8px}
+.ta-row .tx{flex:1; min-width:0}
+.ta-row b{display:block; font-weight:500; white-space:nowrap; overflow:hidden; text-overflow:ellipsis}
+.ta-row small{display:block; color:#5E6368; font-size:.84em; white-space:nowrap; overflow:hidden; text-overflow:ellipsis}
+.ta-row small.off{color:#9A5B00}
+.ta-meta{display:flex; align-items:center; gap:8px; font-size:.86em; color:#44474E; padding:0 4px 4px}
+.ta-empty{padding:26px 18px; text-align:center; color:#5E6368; display:flex; flex-direction:column; gap:8px; align-items:center; margin-top:10px}
+.ta-empty b{color:#1F1F1F; font-weight:400; font-size:1.15em}
+.ta-empty span{max-width:34ch; line-height:1.5; font-size:.9em}
+.ta-empty svg.big{width:88px; height:88px; color:#A8C7E8; margin-bottom:2px}
+.fav{width:26px; height:26px; border-radius:6px; flex:none; display:grid; place-items:center; color:#fff; font-weight:700; font-size:.78em}
+.fav svg{width:16px; height:16px}
+.stag{font-size:.72em; font-weight:700; color:#0842A0; background:#D3E3FD; border-radius:6px; padding:1px 6px; white-space:nowrap; margin-left:6px; vertical-align:1px}
+.ta-tg{display:flex; align-items:center; gap:14px; padding:13px 18px}
+.ta-tg + .ta-tg{border-top:2px solid #EEF2F7}
+.ta-tg .tx{flex:1}
+.ta-tg.off{opacity:.6}
+.ta-card .ta-tg{background:#F6F8FB}
+.ta-card .ta-tg + .ta-tg{border-top:2px solid #fff}
+.ta-tg small{display:block; color:#5E6368; font-size:.84em}
+.says{display:flex; flex-direction:column; gap:2px; padding:6px}
+.says button{border:0; background:none; text-align:left; padding:9px 12px; border-radius:10px; display:flex; gap:10px; align-items:center}
+.says button:hover{background:#EAF1FA}
+.says button svg{width:16px; height:16px; color:#2E6A96}
+.sayrow{display:flex; gap:8px; padding:6px 10px 12px}
+
+/* menus, dialogs, viewer */
+.menu{position:absolute; top:calc(100% + 4px); right:0; z-index:45; min-width:180px; background:#fff; border-radius:12px; padding:6px 0; box-shadow:0 10px 28px -6px rgba(0,0,0,.3), 0 0 0 1px rgba(0,0,0,.04)}
+.menu.up{top:auto; bottom:calc(100% + 4px)}
+.menu.l{left:0; right:auto}
+.menu > button{width:100%; border:0; background:none; text-align:left; padding:10px 16px; display:flex; align-items:center; gap:10px; white-space:nowrap}
+.menu > button:hover{background:#EEF3FA}
+.menu > button svg{width:18px; height:18px; color:#44474E}
+.menu > button[aria-checked="true"]{font-weight:500; color:#2E6A96}
+.dim{position:absolute; inset:0; z-index:40; background:rgba(40,48,60,.38); display:grid; place-items:center; padding:14px}
+.dlg{width:min(420px,100%); max-height:100%; overflow:auto; background:#fff; border-radius:24px; padding:22px 22px 18px; display:flex; flex-direction:column; gap:12px; box-shadow:0 18px 50px -12px rgba(0,0,0,.45)}
+.dlg h3{margin:0; font-size:1.38em; font-weight:400}
+.dlg .for{font-weight:500; margin-top:-4px}
+.dlg .note{color:#5E6368; font-size:.88em; margin:-4px 0 0}
+.sel{position:relative}
+.sel select{appearance:none; -webkit-appearance:none; width:100%; height:46px; border:0; border-radius:8px; background:#EEF1F6; padding:0 40px 0 14px; font:inherit; color:#1F1F1F}
+.sel svg{position:absolute; right:12px; top:50%; transform:translateY(-50%); pointer-events:none; width:20px; height:20px}
+.chk{display:flex; align-items:center; gap:14px; padding:4px 2px; cursor:pointer}
+.chk input{width:18px; height:18px; margin:0 0 0 2px; accent-color:#216392; flex:none}
+.chk .tx small{display:block; color:#5E6368; font-size:.84em}
+.chk.dis{opacity:.5; cursor:default}
+.lnk{color:#1A5C8F; text-decoration:underline; text-underline-offset:2px; background:none; border:0; padding:0; text-align:left; font:inherit}
+.acts{display:flex; justify-content:flex-end; gap:8px; margin-top:6px; flex-wrap:wrap}
+.picks{display:flex; flex-direction:column; max-height:260px; overflow:auto; margin:0 -6px}
+.picks .chk{padding:7px 8px; border-radius:10px}
+.picks .chk:hover{background:#F2F5F9}
+.codebig{font-size:3em; font-weight:500; letter-spacing:.16em; text-align:center; padding:10px 0; font-variant-numeric:tabular-nums}
+.vwin{position:absolute; inset:0; z-index:42; display:flex; flex-direction:column; background:#808080}
+.vbody{flex:1; min-height:0; position:relative}
+.vpill{position:absolute; top:10px; left:50%; transform:translateX(-50%); z-index:3; display:flex; align-items:center; gap:8px; background:rgba(38,38,40,.92); color:#fff; border-radius:10px; padding:6px 14px; font-size:.88em; white-space:nowrap; max-width:calc(100% - 24px); overflow:hidden; text-overflow:ellipsis}
+.vpill svg{width:16px; height:16px}
+.mbox{position:relative; overflow:hidden; background:#000; box-shadow:0 0 0 1px rgba(0,0,0,.2)}
+.minner{position:absolute; left:0; top:0; width:1024px; height:640px; transform-origin:0 0; pointer-events:none}
+.minner .scr{position:absolute; inset:0; border-radius:0; font-size:14px}
+.waitbox{position:absolute; inset:0; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:8px; text-align:center; color:#fff}
+.waitbox .n{font-size:2.6em; font-weight:500; font-variant-numeric:tabular-nums}
+.waitbox small{color:#E8EAED; opacity:.85}
+.toasts{position:absolute; left:50%; bottom:56px; transform:translateX(-50%); z-index:90; display:flex; flex-direction:column; align-items:center; gap:6px; width:max-content; max-width:calc(100% - 24px); pointer-events:none}
+.toasts.hi{bottom:14px}
+.toast{pointer-events:auto; display:flex; align-items:center; gap:14px; background:#313235; color:#F2F2F2; border-radius:8px; padding:9px 14px; font-size:.9em; box-shadow:0 6px 18px -4px rgba(0,0,0,.4); animation:tin .18s ease-out}
+.toast button{border:0; background:none; color:#A8C7FA; font-weight:500; padding:0}
+@keyframes tin{from{transform:translateY(6px); opacity:0}}
+@container (max-width:560px){
+ .ta-col{padding:18px 10px 24px}
+ .ta-item{gap:12px; padding:12px 14px}
+ .ta-foot .tx small{display:none}
+}
+
+/* student: browser window */
+.tabs{display:flex; align-items:flex-end; gap:2px; padding:6px 8px 0; background:#DFE5EE; overflow:hidden; flex:none}
+.tab{max-width:190px; min-width:0; height:32px; border:0; border-radius:9px 9px 0 0; padding:0 10px; display:flex; align-items:center; gap:7px; background:transparent; font-size:.86em}
+.tab span{white-space:nowrap; overflow:hidden; text-overflow:ellipsis}
+.tab svg{width:14px; height:14px}
+.tab:hover{background:rgba(255,255,255,.5)}
+.tab[aria-selected="true"]{background:#fff}
+.omni{display:flex; align-items:center; gap:8px; padding:6px 10px; border-bottom:1px solid var(--os-line); flex:none}
+.omni .url{flex:1; min-width:0; height:30px; border-radius:15px; background:#F0F4F9; display:flex; align-items:center; gap:8px; padding:0 12px; font-size:.88em; color:var(--os-ink-2); white-space:nowrap; overflow:hidden}
+.omni .url svg{width:14px; height:14px}
+.omni .ib{width:28px; height:28px}
+.page{flex:1; min-height:0; overflow:auto; padding:18px 22px 24px; background:#fff}
+.page h1{font-size:1.5em; font-weight:700; margin:0 0 6px; line-height:1.25}
+.page .lead{color:var(--os-ink-2); margin:0 0 14px}
+.plinks{display:flex; flex-direction:column; gap:6px; margin-top:16px; align-items:flex-start}
+.plinks button{border:0; background:none; padding:2px 0; color:#1A0DAB; text-decoration:underline; text-underline-offset:3px; display:flex; align-items:center; gap:6px; text-align:left}
+.plinks button svg{width:14px; height:14px}
+.plinks button small{color:var(--os-ink-2); text-decoration:none; font-size:.82em}
+.planets{display:flex; align-items:center; gap:3%; padding:18px 10px; border-radius:14px; background:#0F1830; overflow:hidden}
+.planet{border-radius:50%; flex:none; position:relative}
+.planet.ring::after{content:""; position:absolute; left:-35%; right:-35%; top:42%; height:16%; border-radius:50%; border:2px solid #E8D39A; transform:rotate(-12deg)}
+.sun{width:26px; height:52px; border-radius:0 52px 52px 0; background:#F7B733; margin-left:-10px; flex:none}
+.ptable{border-collapse:collapse; width:100%; max-width:520px; font-size:.95em}
+.ptable th,.ptable td{border:1px solid var(--os-line); padding:6px 10px; text-align:left}
+.ptable th{background:#F0F4F9; font-weight:500}
+.ptable td.n{text-align:right; font-variant-numeric:tabular-nums}
+.sheetbar{display:flex; gap:6px; margin-bottom:10px}
+.sheetbar i{height:10px; border-radius:3px; background:#CDE6D3}
+.ws{border:1px solid var(--os-line); border-radius:12px; padding:14px; max-width:560px; display:flex; flex-direction:column; gap:10px}
+.ws .opts{display:flex; flex-wrap:wrap; gap:6px}
+.ws .opts button{border:1px solid var(--os-line); background:#fff; border-radius:8px; padding:4px 10px}
+.ws .opts button[aria-pressed="true"]{background:#D3E3FD; border-color:#0B57D0; color:#041E49}
+.ws textarea{font:inherit; border:1px solid #747775; border-radius:8px; padding:8px 10px; min-height:70px; resize:vertical; width:100%}
+.quiz{display:flex; flex-direction:column; gap:14px; max-width:560px}
+.quiz fieldset{border:1px solid var(--os-line); border-radius:12px; padding:10px 14px; margin:0}
+.quiz legend{font-weight:500; padding:0 4px}
+.quiz label{display:flex; gap:8px; align-items:center; padding:3px 0}
+.quiz input{accent-color:#0B57D0}
+.player{position:relative; aspect-ratio:16/9; max-width:560px; border-radius:12px; background:linear-gradient(135deg,#1B2140,#3B2A5A); display:grid; place-items:center; overflow:hidden}
+.player .pb{width:56px; height:56px; border-radius:50%; background:rgba(255,255,255,.9); display:grid; place-items:center; color:#222}
+.player .pb svg{width:26px; height:26px}
+.player .bar2{position:absolute; left:12px; right:12px; bottom:10px; height:4px; border-radius:2px; background:rgba(255,255,255,.3)}
+.player .bar2 i{display:block; width:36%; height:100%; background:#FF4E45; border-radius:2px}
+.thumbs{display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:10px}
+.thumb{display:flex; flex-direction:column; gap:4px; font-size:.85em}
+.thumb i{aspect-ratio:16/9; border-radius:8px; display:grid; place-items:center; color:#fff}
+.thumb i svg{width:20px; height:20px}
+.blocks{display:grid; grid-template-columns:repeat(10,1fr); gap:3px; max-width:300px; padding:8px; background:#1d1d2b; border-radius:10px}
+.blocks i{aspect-ratio:1; border-radius:3px}
+.nt{display:flex; flex-direction:column; align-items:center; gap:18px; padding-top:8%}
+.nt .sb{width:min(460px,90%); height:44px; border-radius:22px; border:1px solid var(--os-line); display:flex; align-items:center; gap:10px; padding:0 16px; color:var(--os-ink-2); box-shadow:0 1px 6px rgba(32,33,36,.12)}
+.nt .sb svg{width:18px; height:18px}
+.nt .sc{display:flex; gap:18px; flex-wrap:wrap; justify-content:center}
+.nt .sc span{display:flex; flex-direction:column; align-items:center; gap:6px; font-size:.82em; width:72px}
+.nt .sc i{width:44px; height:44px; border-radius:50%; background:#F0F4F9; display:grid; place-items:center; font-style:normal; font-weight:700; color:#0B57D0}
+
+/* student: class tools app (green theme) */
+.sa{flex:1; min-height:0; position:relative; overflow:hidden; background:#F0F3E2; color:#1B1D14; display:flex; flex-direction:column}
+.sa-strip{flex:none; display:flex; align-items:center; gap:0; padding:4px 6px; background:#E4EBD2; overflow:hidden}
+.sa-strip button{max-width:190px; min-width:0; height:30px; border:0; border-radius:8px; padding:0 12px; background:transparent; display:flex; align-items:center; gap:7px; font-size:.84em; color:#31341F}
+.sa-strip button span{white-space:nowrap; overflow:hidden; text-overflow:ellipsis}
+.sa-strip button svg{width:15px; height:15px}
+.sa-strip button:hover{background:rgba(255,255,255,.45)}
+.sa-strip button[aria-selected="true"]{background:#F6F8EA}
+.sa-strip .home{padding:0 10px; flex:none}
+.sa-strip .sep{width:1px; height:16px; background:#C7CFB4; flex:none}
+.sa-strip .end{margin-left:auto; padding:0 10px; flex:none; color:#4B5136}
+.sa-body{flex:1; min-height:0; position:relative}
+.sa-scroll{position:absolute; inset:0; overflow:auto}
+.sa-tool{position:absolute; top:12px; left:14px; z-index:6; display:flex; align-items:center; gap:2px; background:#F6F8EA; border-radius:999px; padding:4px 6px; box-shadow:0 2px 8px rgba(40,50,20,.2)}
+.sa-tool button{width:30px; height:30px; border-radius:50%; border:0; background:none; display:grid; place-items:center; color:#45483C}
+.sa-tool button svg{width:17px; height:17px}
+.sa-tool button:hover:not(:disabled){background:rgba(70,80,40,.08)}
+.sa-tool button[aria-pressed="true"]{background:#B9D48B; color:#1A2A00}
+.sa-tool button:disabled{color:#B8BBAA; cursor:default}
+.sa-tool .sep{width:1px; height:18px; background:#D6D9C6; margin:0 5px}
+.sa-col{width:min(620px, calc(100% - 28px)); margin:0 auto; padding:14px 0 70px; display:flex; flex-direction:column; gap:8px}
+@container (max-width:900px){ .sa-col{padding-top:58px} }
+.sa-hero{position:relative; overflow:hidden; border-radius:28px; min-height:150px; padding:24px 28px; background:linear-gradient(115deg,#F7FBE8 0%,#EAF4CC 55%,#D9EBAF 100%); display:flex; flex-direction:column; justify-content:center}
+.sa-hero .deco{position:absolute; right:0; top:0; width:64%; height:100%}
+.sa-hero h2{position:relative; z-index:1; margin:0 0 6px; font-size:1.6em; font-weight:400; max-width:64%; line-height:1.3}
+.sa-hero p{position:relative; z-index:1; margin:0; font-size:.9em; max-width:70%; color:#2E3126}
+.sa-hero .st{position:absolute; right:12px; bottom:10px; z-index:1; display:flex; align-items:center; gap:5px; background:#E8F3D0; border-radius:10px; padding:3px 9px; font-size:.78em}
+.sa-hero .st svg{width:12px; height:12px}
+.sa-2{display:grid; grid-template-columns:1fr 1fr; gap:8px}
+.sa-card{background:#FBFDEE; border-radius:14px; padding:12px 16px; display:flex; align-items:center; gap:12px; min-width:0; min-height:52px}
+.sa-card > svg{width:18px; height:18px; color:#45483C}
+.sa-card > span{flex:1; min-width:0; font-size:.9em}
+.sw.g{border-color:#77786A; background:#E3E4D3}
+.sw.g::after{background:#77786A}
+.sw.g[aria-checked="true"]{background:#4B661F; border-color:#4B661F}
+.sw.g[aria-checked="true"]::after{background:#fff}
+.sa-tabs{background:#FBFDEE; border-radius:16px; padding:4px 8px 8px}
+.sa-hd{display:flex; align-items:center; gap:10px; padding:10px 8px 12px; font-size:.9em}
+.sa-hd > svg{width:18px; height:18px}
+.sa-rst{margin-left:auto; border:0; background:none; display:flex; align-items:center; gap:6px; color:#55584A; font-size:.86em; padding:4px 8px; border-radius:8px}
+.sa-rst:hover{background:rgba(70,80,40,.08)}
+.sa-rst svg{width:15px; height:15px}
+.sa-list{background:#EFF1E2; border-radius:12px; padding:6px}
+.sa-li{width:100%; display:flex; align-items:center; gap:12px; padding:9px 10px; border:0; background:none; border-radius:10px; text-align:left; font-size:.9em}
+.sa-li:hover{background:#E4E8D0}
+.sa-li .fav{width:20px; height:20px; border-radius:5px; font-size:.68em}
+.sa-li .fav svg{width:13px; height:13px}
+.sa-li .tx{flex:1; min-width:0; white-space:nowrap; overflow:hidden; text-overflow:ellipsis}
+.sa-li > svg{width:17px; height:17px; color:#45483C}
+.sa-empty{padding:18px; text-align:center; color:#5C5F50; font-size:.9em}
+.sa-page{position:absolute; inset:52px 14px 14px; z-index:2; display:flex; flex-direction:column; background:#fff; border-radius:16px; overflow:hidden; box-shadow:0 1px 3px rgba(40,50,20,.15)}
+.sa-ph{flex:none; display:flex; align-items:center; gap:10px; padding:8px 14px; border-bottom:1px solid #E4E6D6; background:#FBFDEE; font-size:.86em; min-width:0}
+.sa-ph b{font-weight:500; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; max-width:40%}
+.sa-ph .u{flex:1; min-width:0; color:#6A6D5E; white-space:nowrap; overflow:hidden; text-overflow:ellipsis}
+.sa-ph .ri{display:flex; align-items:center; gap:5px; color:#45483C; white-space:nowrap}
+.sa-ph .ri svg{width:15px; height:15px}
+.sa-ph .fav{width:20px; height:20px; border-radius:5px; font-size:.68em}
+.sa-ph .fav svg{width:13px; height:13px}
+.blocked{position:absolute; right:14px; bottom:14px; z-index:70; max-width:calc(100% - 28px); display:flex; gap:10px; align-items:flex-start; background:#E8EAE0; color:#31341F; border-radius:12px; padding:11px 16px; font-size:.86em; line-height:1.45; box-shadow:0 6px 18px -6px rgba(0,0,0,.28)}
+.blocked svg{width:17px; height:17px; color:#6A6D5E; margin-top:1px}
+.sa-watch{position:absolute; right:14px; bottom:58px; z-index:80; display:flex; align-items:center; gap:8px; background:#D2E7AE; color:#1A2A00; border-radius:999px; padding:8px 16px; font-size:.88em; box-shadow:0 2px 10px rgba(40,60,10,.2); animation:tin .2s ease-out; max-width:calc(100% - 28px)}
+.sa-watch svg{width:17px; height:17px}
+.sa-watch .n{width:22px; height:22px; border-radius:50%; background:#4B661F; color:#fff; display:grid; place-items:center; font-weight:700; font-size:.85em; flex:none}
+.desk.full ~ .sa-watch{bottom:14px}
+.sa-watch.lift{bottom:196px}
+.desk.full ~ .sa-watch.lift{bottom:154px}
+.sa-join{padding:12px 16px 16px; flex-direction:column; align-items:stretch; gap:8px}
+.sa-join b{font-weight:500}
+.sa-join small{color:#5C5F50}
+.sa-join .jr{display:flex; gap:8px}
+.inp.g{border-color:#77786A; text-transform:uppercase; letter-spacing:.14em; font-weight:500; text-align:center}
+.inp.g:focus{outline-color:#4B661F}
+.pill.g{background:#4B661F; color:#fff}
+.pill.g:hover{background:#3F5719}
+.err{color:#B3261E; font-size:.85em}
+.paused{position:absolute; inset:0; z-index:60; display:grid; place-items:center; padding:18px; background:rgba(120,124,110,.55); backdrop-filter:blur(1.5px)}
+.pcard{width:min(360px,100%); background:#fff; border-radius:22px; padding:26px 24px 28px; text-align:center; display:flex; flex-direction:column; align-items:center; gap:10px; box-shadow:0 18px 44px -12px rgba(0,0,0,.4); color:#1F1F1F}
+.pcard svg.ill{width:190px; height:110px}
+.pcard .clockpill{display:inline-flex; align-items:center; gap:8px; border:1px solid #DADCE0; border-radius:999px; padding:5px 14px; font-size:.9em; color:#1F1F1F}
+.pcard .clockpill svg{width:15px; height:15px; color:#1B3A8F}
+.pcard h2{margin:6px 0 0; font-size:1.18em; font-weight:500}
+.pcard p{margin:0; color:#5E6368; font-size:.9em; line-height:1.5; max-width:30ch}
+
+/* captions */
+.cap{position:absolute; left:50%; bottom:58px; transform:translateX(-50%); z-index:75; width:min(760px, calc(100% - 28px)); border-radius:12px; padding:8px 14px 12px; background:rgba(18,18,20,.88); color:#fff}
+.desk.full ~ .cap{bottom:16px}
+.cap.top{top:12px; bottom:auto}
+.cap.light{background:rgba(255,255,255,.96); color:#111; box-shadow:0 8px 24px -8px rgba(0,0,0,.35)}
+.cap-bar{display:flex; align-items:center; gap:4px; font-size:.78em; opacity:.9; margin-bottom:2px}
+.cap-bar svg{width:14px; height:14px}
+.cap-bar .ib{width:26px; height:26px; color:inherit}
+.cap-bar .ib svg{width:15px; height:15px}
+.cap-bar .ib:hover{background:rgba(127,127,127,.25)}
+.cap-bar select{font:inherit; font-size:1em; background:transparent; color:inherit; border:1px solid rgba(127,127,127,.5); border-radius:6px; padding:1px 4px}
+.cap-bar select option{color:#111}
+.cap-t{font-size:1.12em; line-height:1.5; min-height:1.5em}
+.cap.s1 .cap-t{font-size:1.35em}
+.cap.s2 .cap-t{font-size:1.6em}
+.cap-t .old{opacity:.55}
+.cap-note{font-size:.72em; opacity:.7}
+.menu .fav{width:20px; height:20px; border-radius:5px; font-size:.68em}
+.menu > button .fav svg{width:13px; height:13px; color:#fff}
+.sa-li .nv{display:grid; place-items:center; color:#45483C}
+.sa-li .nv svg{width:17px; height:17px}
+.chk .fav{width:24px; height:24px}
+@container (max-width:560px){
+ .sa-2{grid-template-columns:1fr}
+ .sa-hero{padding:18px 18px; min-height:120px}
+ .sa-hero h2,.sa-hero p{max-width:100%}
+ .sa-hero .deco{opacity:.45}
+ .page{padding:14px 14px 20px}
+}
+</style>
+</head>
+<body>
+<div id="root"><p class="boot">체험 화면을 불러오는 중…</p></div>
+<noscript><p class="boot">이 체험 화면을 보려면 브라우저에서 JavaScript를 켜 주세요.</p></noscript>
+<script>/* htm 3.1.1 (Apache-2.0, https://github.com/developit/htm) + Preact (MIT, https://preactjs.com), bundled so the page has no CDN dependency */
+!function(e,n){"object"==typeof exports&&"undefined"!=typeof module?n(exports):"function"==typeof define&&define.amd?define(["exports"],n):n(e.htmPreact={})}(this,function(e){var n,_,t,o,r,u,l,i={},c=[],f=/acit|ex(?:s|g|n|p|$)|rph|grid|ows|mnc|ntw|ine[ch]|zoo|^ord|itera/i;function s(e,n){for(var _ in n)e[_]=n[_];return e}function a(e){var n=e.parentNode;n&&n.removeChild(e)}function p(e,_,t){var o,r,u,l={};for(u in _)"key"==u?o=_[u]:"ref"==u?r=_[u]:l[u]=_[u];if(arguments.length>2&&(l.children=arguments.length>3?n.call(arguments,2):t),"function"==typeof e&&null!=e.defaultProps)for(u in e.defaultProps)void 0===l[u]&&(l[u]=e.defaultProps[u]);return h(e,l,o,r,null)}function h(e,n,o,r,u){var l={type:e,props:n,key:o,ref:r,__k:null,__:null,__b:0,__e:null,__d:void 0,__c:null,__h:null,constructor:void 0,__v:null==u?++t:u};return null!=_.vnode&&_.vnode(l),l}function d(e){return e.children}function v(e,n){this.props=e,this.context=n}function y(e,n){if(null==n)return e.__?y(e.__,e.__.__k.indexOf(e)+1):null;for(var _;n<e.__k.length;n++)if(null!=(_=e.__k[n])&&null!=_.__e)return _.__e;return"function"==typeof e.type?y(e):null}function m(e){var n,_;if(null!=(e=e.__)&&null!=e.__c){for(e.__e=e.__c.base=null,n=0;n<e.__k.length;n++)if(null!=(_=e.__k[n])&&null!=_.__e){e.__e=e.__c.base=_.__e;break}return m(e)}}function g(e){(!e.__d&&(e.__d=!0)&&o.push(e)&&!k.__r++||u!==_.debounceRendering)&&((u=_.debounceRendering)||r)(k)}function k(){for(var e;k.__r=o.length;)e=o.sort(function(e,n){return e.__v.__b-n.__v.__b}),o=[],e.some(function(e){var n,_,t,o,r,u;e.__d&&(r=(o=(n=e).__v).__e,(u=n.__P)&&(_=[],(t=s({},o)).__v=o.__v+1,D(u,o,t,n.__n,void 0!==u.ownerSVGElement,null!=o.__h?[r]:null,_,null==r?y(o):r,o.__h),w(_,o),o.__e!=r&&m(o)))})}function b(e,n,_,t,o,r,u,l,f,s){var a,p,v,m,g,k,b,H=t&&t.__k||c,E=H.length;for(_.__k=[],a=0;a<n.length;a++)if(null!=(m=_.__k[a]=null==(m=n[a])||"boolean"==typeof m?null:"string"==typeof m||"number"==typeof m||"bigint"==typeof m?h(null,m,null,null,m):Array.isArray(m)?h(d,{children:m},null,null,null):m.__b>0?h(m.type,m.props,m.key,null,m.__v):m)){if(m.__=_,m.__b=_.__b+1,null===(v=H[a])||v&&m.key==v.key&&m.type===v.type)H[a]=void 0;else for(p=0;p<E;p++){if((v=H[p])&&m.key==v.key&&m.type===v.type){H[p]=void 0;break}v=null}D(e,m,v=v||i,o,r,u,l,f,s),g=m.__e,(p=m.ref)&&v.ref!=p&&(b||(b=[]),v.ref&&b.push(v.ref,null,m),b.push(p,m.__c||g,m)),null!=g?(null==k&&(k=g),"function"==typeof m.type&&null!=m.__k&&m.__k===v.__k?m.__d=f=C(m,f,e):f=x(e,m,v,H,g,f),s||"option"!==_.type?"function"==typeof _.type&&(_.__d=f):e.value=""):f&&v.__e==f&&f.parentNode!=e&&(f=y(v))}for(_.__e=k,a=E;a--;)null!=H[a]&&("function"==typeof _.type&&null!=H[a].__e&&H[a].__e==_.__d&&(_.__d=y(t,a+1)),A(H[a],H[a]));if(b)for(a=0;a<b.length;a++)U(b[a],b[++a],b[++a])}function C(e,n,_){var t,o;for(t=0;t<e.__k.length;t++)(o=e.__k[t])&&(o.__=e,n="function"==typeof o.type?C(o,n,_):x(_,o,o,e.__k,o.__e,n));return n}function x(e,n,_,t,o,r){var u,l,i;if(void 0!==n.__d)u=n.__d,n.__d=void 0;else if(null==_||o!=r||null==o.parentNode)e:if(null==r||r.parentNode!==e)e.appendChild(o),u=null;else{for(l=r,i=0;(l=l.nextSibling)&&i<t.length;i+=2)if(l==o)break e;e.insertBefore(o,r),u=r}return void 0!==u?u:o.nextSibling}function H(e,n,_){"-"===n[0]?e.setProperty(n,_):e[n]=null==_?"":"number"!=typeof _||f.test(n)?_:_+"px"}function E(e,n,_,t,o){var r;e:if("style"===n)if("string"==typeof _)e.style.cssText=_;else{if("string"==typeof t&&(e.style.cssText=t=""),t)for(n in t)_&&n in _||H(e.style,n,"");if(_)for(n in _)t&&_[n]===t[n]||H(e.style,n,_[n])}else if("o"===n[0]&&"n"===n[1])r=n!==(n=n.replace(/Capture$/,"")),n=n.toLowerCase()in e?n.toLowerCase().slice(2):n.slice(2),e.l||(e.l={}),e.l[n+r]=_,_?t||e.addEventListener(n,r?S:P,r):e.removeEventListener(n,r?S:P,r);else if("dangerouslySetInnerHTML"!==n){if(o)n=n.replace(/xlink[H:h]/,"h").replace(/sName$/,"s");else if("href"!==n&&"list"!==n&&"form"!==n&&"tabIndex"!==n&&"download"!==n&&n in e)try{e[n]=null==_?"":_;break e}catch(e){}"function"==typeof _||(null!=_&&(!1!==_||"a"===n[0]&&"r"===n[1])?e.setAttribute(n,_):e.removeAttribute(n))}}function P(e){this.l[e.type+!1](_.event?_.event(e):e)}function S(e){this.l[e.type+!0](_.event?_.event(e):e)}function D(e,n,t,o,r,u,l,i,c){var f,a,p,h,y,m,g,k,C,x,H,E=n.type;if(void 0!==n.constructor)return null;null!=t.__h&&(c=t.__h,i=n.__e=t.__e,n.__h=null,u=[i]),(f=_.__b)&&f(n);try{e:if("function"==typeof E){if(k=n.props,C=(f=E.contextType)&&o[f.__c],x=f?C?C.props.value:f.__:o,t.__c?g=(a=n.__c=t.__c).__=a.__E:("prototype"in E&&E.prototype.render?n.__c=a=new E(k,x):(n.__c=a=new v(k,x),a.constructor=E,a.render=M),C&&C.sub(a),a.props=k,a.state||(a.state={}),a.context=x,a.__n=o,p=a.__d=!0,a.__h=[]),null==a.__s&&(a.__s=a.state),null!=E.getDerivedStateFromProps&&(a.__s==a.state&&(a.__s=s({},a.__s)),s(a.__s,E.getDerivedStateFromProps(k,a.__s))),h=a.props,y=a.state,p)null==E.getDerivedStateFromProps&&null!=a.componentWillMount&&a.componentWillMount(),null!=a.componentDidMount&&a.__h.push(a.componentDidMount);else{if(null==E.getDerivedStateFromProps&&k!==h&&null!=a.componentWillReceiveProps&&a.componentWillReceiveProps(k,x),!a.__e&&null!=a.shouldComponentUpdate&&!1===a.shouldComponentUpdate(k,a.__s,x)||n.__v===t.__v){a.props=k,a.state=a.__s,n.__v!==t.__v&&(a.__d=!1),a.__v=n,n.__e=t.__e,n.__k=t.__k,n.__k.forEach(function(e){e&&(e.__=n)}),a.__h.length&&l.push(a);break e}null!=a.componentWillUpdate&&a.componentWillUpdate(k,a.__s,x),null!=a.componentDidUpdate&&a.__h.push(function(){a.componentDidUpdate(h,y,m)})}a.context=x,a.props=k,a.state=a.__s,(f=_.__r)&&f(n),a.__d=!1,a.__v=n,a.__P=e,f=a.render(a.props,a.state,a.context),a.state=a.__s,null!=a.getChildContext&&(o=s(s({},o),a.getChildContext())),p||null==a.getSnapshotBeforeUpdate||(m=a.getSnapshotBeforeUpdate(h,y)),H=null!=f&&f.type===d&&null==f.key?f.props.children:f,b(e,Array.isArray(H)?H:[H],n,t,o,r,u,l,i,c),a.base=n.__e,n.__h=null,a.__h.length&&l.push(a),g&&(a.__E=a.__=null),a.__e=!1}else null==u&&n.__v===t.__v?(n.__k=t.__k,n.__e=t.__e):n.__e=T(t.__e,n,t,o,r,u,l,c);(f=_.diffed)&&f(n)}catch(e){n.__v=null,(c||null!=u)&&(n.__e=i,n.__h=!!c,u[u.indexOf(i)]=null),_.__e(e,n,t)}}function w(e,n){_.__c&&_.__c(n,e),e.some(function(n){try{e=n.__h,n.__h=[],e.some(function(e){e.call(n)})}catch(e){_.__e(e,n.__v)}})}function T(e,_,t,o,r,u,l,c){var f,s,p,h=t.props,d=_.props,v=_.type,m=0;if("svg"===v&&(r=!0),null!=u)for(;m<u.length;m++)if((f=u[m])&&(f===e||(v?f.localName==v:3==f.nodeType))){e=f,u[m]=null;break}if(null==e){if(null===v)return document.createTextNode(d);e=r?document.createElementNS("http://www.w3.org/2000/svg",v):document.createElement(v,d.is&&d),u=null,c=!1}if(null===v)h===d||c&&e.data===d||(e.data=d);else{if(u=u&&n.call(e.childNodes),s=(h=t.props||i).dangerouslySetInnerHTML,p=d.dangerouslySetInnerHTML,!c){if(null!=u)for(h={},m=0;m<e.attributes.length;m++)h[e.attributes[m].name]=e.attributes[m].value;(p||s)&&(p&&(s&&p.__html==s.__html||p.__html===e.innerHTML)||(e.innerHTML=p&&p.__html||""))}if(function(e,n,_,t,o){var r;for(r in _)"children"===r||"key"===r||r in n||E(e,r,null,_[r],t);for(r in n)o&&"function"!=typeof n[r]||"children"===r||"key"===r||"value"===r||"checked"===r||_[r]===n[r]||E(e,r,n[r],_[r],t)}(e,d,h,r,c),p)_.__k=[];else if(m=_.props.children,b(e,Array.isArray(m)?m:[m],_,t,o,r&&"foreignObject"!==v,u,l,u?u[0]:t.__k&&y(t,0),c),null!=u)for(m=u.length;m--;)null!=u[m]&&a(u[m]);c||("value"in d&&void 0!==(m=d.value)&&(m!==e.value||"progress"===v&&!m)&&E(e,"value",m,h.value,!1),"checked"in d&&void 0!==(m=d.checked)&&m!==e.checked&&E(e,"checked",m,h.checked,!1))}return e}function U(e,n,t){try{"function"==typeof e?e(n):e.current=n}catch(e){_.__e(e,t)}}function A(e,n,t){var o,r;if(_.unmount&&_.unmount(e),(o=e.ref)&&(o.current&&o.current!==e.__e||U(o,null,n)),null!=(o=e.__c)){if(o.componentWillUnmount)try{o.componentWillUnmount()}catch(e){_.__e(e,n)}o.base=o.__P=null}if(o=e.__k)for(r=0;r<o.length;r++)o[r]&&A(o[r],n,"function"!=typeof e.type);t||null==e.__e||a(e.__e),e.__e=e.__d=void 0}function M(e,n,_){return this.constructor(e,_)}n=c.slice,_={__e:function(e,n){for(var _,t,o;n=n.__;)if((_=n.__c)&&!_.__)try{if((t=_.constructor)&&null!=t.getDerivedStateFromError&&(_.setState(t.getDerivedStateFromError(e)),o=_.__d),null!=_.componentDidCatch&&(_.componentDidCatch(e),o=_.__d),o)return _.__E=_}catch(n){e=n}throw e}},t=0,v.prototype.setState=function(e,n){var _;_=null!=this.__s&&this.__s!==this.state?this.__s:this.__s=s({},this.state),"function"==typeof e&&(e=e(s({},_),this.props)),e&&s(_,e),null!=e&&this.__v&&(n&&this.__h.push(n),g(this))},v.prototype.forceUpdate=function(e){this.__v&&(this.__e=!0,e&&this.__h.push(e),g(this))},v.prototype.render=d,o=[],r="function"==typeof Promise?Promise.prototype.then.bind(Promise.resolve()):setTimeout,k.__r=0,l=0;var F,L,N,W=0,R=[],I=_.__b,O=_.__r,V=_.diffed,q=_.__c,B=_.unmount;function $(e,n){_.__h&&_.__h(L,e,W||n),W=0;var t=L.__H||(L.__H={__:[],__h:[]});return e>=t.__.length&&t.__.push({}),t.__[e]}function j(e){return W=1,G(ee,e)}function G(e,n,_){var t=$(F++,2);return t.t=e,t.__c||(t.__=[_?_(n):ee(void 0,n),function(e){var n=t.t(t.__[0],e);t.__[0]!==n&&(t.__=[n,t.__[1]],t.__c.setState({}))}],t.__c=L),t.__}function z(e,n){var t=$(F++,4);!_.__s&&Z(t.__H,n)&&(t.__=e,t.__H=n,L.__h.push(t))}function J(e,n){var _=$(F++,7);return Z(_.__H,n)&&(_.__=e(),_.__H=n,_.__h=e),_.__}function K(){R.forEach(function(e){if(e.__P)try{e.__H.__h.forEach(X),e.__H.__h.forEach(Y),e.__H.__h=[]}catch(n){e.__H.__h=[],_.__e(n,e.__v)}}),R=[]}_.__b=function(e){L=null,I&&I(e)},_.__r=function(e){O&&O(e),F=0;var n=(L=e.__c).__H;n&&(n.__h.forEach(X),n.__h.forEach(Y),n.__h=[])},_.diffed=function(e){V&&V(e);var n=e.__c;n&&n.__H&&n.__H.__h.length&&(1!==R.push(n)&&N===_.requestAnimationFrame||((N=_.requestAnimationFrame)||function(e){var n,_=function(){clearTimeout(t),Q&&cancelAnimationFrame(n),setTimeout(e)},t=setTimeout(_,100);Q&&(n=requestAnimationFrame(_))})(K)),L=void 0},_.__c=function(e,n){n.some(function(e){try{e.__h.forEach(X),e.__h=e.__h.filter(function(e){return!e.__||Y(e)})}catch(t){n.some(function(e){e.__h&&(e.__h=[])}),n=[],_.__e(t,e.__v)}}),q&&q(e,n)},_.unmount=function(e){B&&B(e);var n=e.__c;if(n&&n.__H)try{n.__H.__.forEach(X)}catch(e){_.__e(e,n.__v)}};var Q="function"==typeof requestAnimationFrame;function X(e){var n=L;"function"==typeof e.__c&&e.__c(),L=n}function Y(e){var n=L;e.__c=e.__(),L=n}function Z(e,n){return!e||e.length!==n.length||n.some(function(n,_){return n!==e[_]})}function ee(e,n){return"function"==typeof n?n(e):n}var ne=function(e,n,_,t){var o;n[0]=0;for(var r=1;r<n.length;r++){var u=n[r++],l=n[r]?(n[0]|=u?1:2,_[n[r++]]):n[++r];3===u?t[0]=l:4===u?t[1]=Object.assign(t[1]||{},l):5===u?(t[1]=t[1]||{})[n[++r]]=l:6===u?t[1][n[++r]]+=l+"":u?(o=e.apply(l,ne(e,l,_,["",null])),t.push(o),l[0]?n[0]|=2:(n[r-2]=0,n[r]=o)):t.push(l)}return t},_e=new Map,te=function(e){var n=_e.get(this);return n||(n=new Map,_e.set(this,n)),(n=ne(this,n.get(e)||(n.set(e,n=function(e){for(var n,_,t=1,o="",r="",u=[0],l=function(e){1===t&&(e||(o=o.replace(/^\s*\n\s*|\s*\n\s*$/g,"")))?u.push(0,e,o):3===t&&(e||o)?(u.push(3,e,o),t=2):2===t&&"..."===o&&e?u.push(4,e,0):2===t&&o&&!e?u.push(5,0,!0,o):t>=5&&((o||!e&&5===t)&&(u.push(t,0,o,_),t=6),e&&(u.push(t,e,0,_),t=6)),o=""},i=0;i<e.length;i++){i&&(1===t&&l(),l(i));for(var c=0;c<e[i].length;c++)n=e[i][c],1===t?"<"===n?(l(),u=[u],t=3):o+=n:4===t?"--"===o&&">"===n?(t=1,o=""):o=n+o[0]:r?n===r?r="":o+=n:'"'===n||"'"===n?r=n:">"===n?(l(),t=1):t&&("="===n?(t=5,_=o,o=""):"/"===n&&(t<5||">"===e[i][c+1])?(l(),3===t&&(u=u[0]),t=u,(u=u[0]).push(2,0,t),t=0):" "===n||"\t"===n||"\n"===n||"\r"===n?(l(),t=2):o+=n),3===t&&"!--"===o&&(t=4,u=u[0])}return l(),u}(e)),n),arguments,[])).length>1?n:n[0]}.bind(p);e.h=p,e.html=te,e.render=function(e,t,o){var r,u,l;_.__&&_.__(e,t),u=(r="function"==typeof o)?null:o&&o.__k||t.__k,l=[],D(t,e=(!r&&o||t).__k=p(d,null,[e]),u||i,i,void 0!==t.ownerSVGElement,!r&&o?[o]:u?null:t.firstChild?n.call(t.childNodes):null,l,!r&&o?o:u?u.__e:t.firstChild,r),w(l,e)},e.Component=v,e.createContext=function(e,n){var _={__c:n="__cC"+l++,__:e,Consumer:function(e,n){return e.children(n)},Provider:function(e){var _,t;return this.getChildContext||(_=[],(t={})[n]=this,this.getChildContext=function(){return t},this.shouldComponentUpdate=function(e){this.props.value!==e.value&&_.some(g)},this.sub=function(e){_.push(e);var n=e.componentWillUnmount;e.componentWillUnmount=function(){_.splice(_.indexOf(e),1),n&&n.call(e)}}),e.children}};return _.Provider.__=_.Consumer.contextType=_},e.useState=j,e.useReducer=G,e.useEffect=function(e,n){var t=$(F++,3);!_.__s&&Z(t.__H,n)&&(t.__=e,t.__H=n,L.__H.__h.push(t))},e.useLayoutEffect=z,e.useRef=function(e){return W=5,J(function(){return{current:e}},[])},e.useImperativeHandle=function(e,n,_){W=6,z(function(){"function"==typeof e?e(n()):e&&(e.current=n())},null==_?_:_.concat(e))},e.useMemo=J,e.useCallback=function(e,n){return W=8,J(function(){return e},n)},e.useContext=function(e){var n=L.context[e.__c],_=$(F++,9);return _.c=e,n?(null==_.__&&(_.__=!0,n.sub(L)),n.props.value):e.__},e.useDebugValue=function(e,n){_.useDebugValue&&_.useDebugValue(n?n(e):e)},e.useErrorBoundary=function(e){var n=$(F++,10),_=j();return n.__=e,L.componentDidCatch||(L.componentDidCatch=function(e){n.__&&n.__(e),_[1](e)}),[_[0],function(){_[1](void 0)}]}});
+</script>
+<script>
+(function(){
+if(!window.htmPreact){ document.getElementById('root').innerHTML='<p class="boot">화면 구성 요소를 불러오지 못했어요. 인터넷 연결을 확인한 뒤 새로고침해 주세요.</p>'; return; }
+const {html, render, useState, useEffect, useRef, useReducer, useLayoutEffect} = window.htmPreact;
+
+/* ---------- icons (simple stroke drawings) ---------- */
+const F='fill="currentColor" stroke="none"';
+const P={
+ people:'<circle cx="9" cy="8" r="3.2"/><path d="M3 19.5c0-3.3 2.7-5.6 6-5.6s6 2.3 6 5.6"/><circle cx="17" cy="9" r="2.4"/><path d="M16.2 13.9c2.8.1 4.8 2.1 4.8 5"/>',
+ person:'<circle cx="12" cy="8" r="4"/><path d="M4 21c0-4.2 3.6-7 8-7s8 2.8 8 7"/>',
+ personfill:`<circle cx="12" cy="8.5" r="3.6" ${F}/><path d="M5 20c0-3.8 3.1-6.2 7-6.2s7 2.4 7 6.2z" ${F}/>`,
+ students:`<circle cx="12" cy="14" r="2.7"/><path d="M7 21.2c0-2.7 2.2-4.5 5-4.5s5 1.8 5 4.5"/><circle cx="12" cy="4" r="1.2" ${F}/><circle cx="7.3" cy="5.6" r="1.2" ${F}/><circle cx="16.7" cy="5.6" r="1.2" ${F}/><circle cx="4.6" cy="9.4" r="1.2" ${F}/><circle cx="19.4" cy="9.4" r="1.2" ${F}/>`,
+ book:'<path d="M6.5 3H19v15H6.5A1.5 1.5 0 0 0 5 19.5v-15A1.5 1.5 0 0 1 6.5 3z"/><path d="M5 19.5A1.5 1.5 0 0 0 6.5 21H19v-3M9 7h6"/>',
+ subtitles:'<rect x="3" y="5" width="18" height="14" rx="2.2"/><path d="M7 12h3M12.5 12H17M7 15.5h6.5M16 15.5h1"/>',
+ sensors:`<circle cx="12" cy="12" r="2.2" ${F}/><path d="M8.6 8.6a4.8 4.8 0 0 0 0 6.8M15.4 8.6a4.8 4.8 0 0 1 0 6.8M5.6 5.6a9 9 0 0 0 0 12.8M18.4 5.6a9 9 0 0 1 0 12.8"/>`,
+ personadd:'<circle cx="9" cy="8" r="3.4"/><path d="M2.8 20c0-3.5 2.8-5.9 6.2-5.9s6.2 2.4 6.2 5.9M19 7.5v6M16 10.5h6"/>',
+ copy:'<rect x="8.5" y="8.5" width="11.5" height="11.5" rx="2"/><path d="M15.5 8.5V5A1 1 0 0 0 14.5 4H5a1 1 0 0 0-1 1v9.5a1 1 0 0 0 1 1h3.5"/>',
+ opennew:'<path d="M14 4h6v6M20 4l-8.5 8.5M18 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h5"/>',
+ link:'<path d="M10 14a4 4 0 0 0 5.7 0l3-3a4 4 0 0 0-5.7-5.7l-1 1"/><path d="M14 10a4 4 0 0 0-5.7 0l-3 3a4 4 0 0 0 5.7 5.7l1-1"/>',
+ lock:'<rect x="5.5" y="10.5" width="13" height="10" rx="2"/><path d="M8.5 10.5V8a3.5 3.5 0 0 1 7 0v2.5"/><circle cx="12" cy="15.5" r="1.2" fill="currentColor" stroke="none"/>',
+ pause:'<path d="M9 6.5v11M15 6.5v11" stroke-width="3"/>',
+ play:`<path d="M8 5.5v13l10.5-6.5z" ${F}/>`,
+ playcircle:`<circle cx="12" cy="12" r="9"/><path d="M10 8.3v7.4l6-3.7z" ${F}/>`,
+ eye:'<path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/>',
+ mic:'<rect x="9" y="3" width="6" height="11" rx="3"/><path d="M5.5 11a6.5 6.5 0 0 0 13 0M12 17.5V21"/>',
+ x:'<path d="M6 6l12 12M18 6L6 18"/>',
+ xcircle:'<circle cx="12" cy="12" r="9"/><path d="M9 9l6 6M15 9l-6 6"/>',
+ plus:'<path d="M12 5v14M5 12h14"/>',
+ check:'<path d="M5 12.5l4.5 4.5L19 7"/>',
+ sliders:'<path d="M4 7h9M18 7h2M4 17h3M12 17h8"/><circle cx="15.5" cy="7" r="2.3"/><circle cx="9.5" cy="17" r="2.3"/>',
+ gear:'<circle cx="12" cy="12" r="3"/><path d="M12 3v2.2M12 18.8V21M3 12h2.2M18.8 12H21M5.6 5.6l1.6 1.6M16.8 16.8l1.6 1.6M5.6 18.4l1.6-1.6M16.8 7.2l1.6-1.6"/><circle cx="12" cy="12" r="6.6"/>',
+ tab:'<rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 9.5h18M10 5v4.5"/>',
+ doc:'<rect x="5" y="3" width="14" height="18" rx="2"/><path d="M9 8h6M9 12h6M9 16h3.5"/>',
+ back:'<path d="M15 5l-7 7 7 7"/>',
+ fwd:'<path d="M9 5l7 7-7 7"/>',
+ arrowl:'<path d="M19 12H5.5M11 6l-6 6 6 6"/>',
+ arrowr:'<path d="M5 12h13.5M13 6l6 6-6 6"/>',
+ refresh:'<path d="M19.5 12a7.5 7.5 0 1 1-2.2-5.3M19.5 4.2v4.6h-4.6"/>',
+ caret:`<path d="M7 10l5 5 5-5z" ${F}/>`,
+ down:'<path d="M6 9l6 6 6-6"/>',
+ layoutl:`<rect x="3.5" y="4.5" width="17" height="15" rx="2.5"/><path d="M9.5 4.5v15"/><rect x="5" y="6" width="3" height="12" rx="1" ${F}/>`,
+ layoutr:'<rect x="3.5" y="4.5" width="17" height="15" rx="2.5"/><path d="M14.5 4.5v15"/>',
+ windows:'<rect x="3.5" y="5" width="17" height="14" rx="2"/><path d="M3.5 12h17"/>',
+ wifi:`<path d="M12 20L2.5 8.6a14 14 0 0 1 19 0z" ${F}/>`,
+ batt:`<rect x="8" y="4" width="8" height="17" rx="1.6" ${F}/><rect x="10.3" y="2.2" width="3.4" height="2.2" rx=".6" ${F}/>`,
+ timer:'<circle cx="12" cy="13.5" r="7.5"/><path d="M12 9.5v4.2l2.6 2.2M9.5 2.5h5"/>',
+ pie:`<circle cx="12" cy="12" r="8.5"/><path d="M12 12V3.5A8.5 8.5 0 0 1 19.4 16.2z" ${F}/>`,
+ calendar:'<rect x="4" y="5" width="16" height="15" rx="2"/><path d="M4 10h16M8.5 3v4M15.5 3v4"/>',
+ globe:'<circle cx="12" cy="12" r="9"/><path d="M3 12h18"/><ellipse cx="12" cy="12" rx="3.8" ry="9"/>',
+ app:'<rect x="3" y="4" width="18" height="12.5" rx="2"/><path d="M8.5 20h7M12 16.5V20"/><path d="M8.3 10.3l2.4 2.4 4.8-4.8"/>',
+ translate:'<path d="M4 5.5h9M8.5 3.5v2M6.3 5.5c.9 3.6 3.4 6.4 6.2 7.5M10.8 5.5c-.9 3.6-3.4 6.4-6.3 7.5"/><path d="M13 21l4-9 4 9M14.4 18h5.2"/>',
+ textsize:'<path d="M3 19l5-13 5 13M4.8 14.5h6.4M14 19l3.5-8.5L21 19M15.1 16.3h4.8"/>',
+ swap:'<path d="M8 20V5M8 5L4.5 8.5M8 5l3.5 3.5M16 4v15M16 19l-3.5-3.5M16 19l3.5-3.5"/>',
+ contrast:`<circle cx="12" cy="12" r="9"/><path d="M12 3v18a9 9 0 0 0 0-18z" ${F}/>`,
+ minus:'<path d="M6 12h12"/>',
+ square:'<rect x="6" y="6" width="12" height="12" rx="1.5"/>',
+ search:'<circle cx="11" cy="11" r="6.5"/><path d="M20 20l-4.3-4.3"/>',
+ block:'<circle cx="12" cy="12" r="9"/><path d="M5.8 5.8l12.4 12.4"/>',
+ send:'<path d="M4 12L20 4l-5.5 16-3-7z"/><path d="M11.5 13L20 4"/>',
+ reset:'<path d="M20 12a8 8 0 1 1-2.4-5.7M20 4.5v5h-5"/>',
+ home:'<path d="M4 11l8-7 8 7v8.5a1.5 1.5 0 0 1-1.5 1.5H15v-6H9v6H5.5A1.5 1.5 0 0 1 4 19.5z"/>',
+ split:'<rect x="3" y="5" width="18" height="14" rx="2"/><path d="M12 5v14"/>',
+ teacher:'<circle cx="7.5" cy="9" r="2.6"/><path d="M3 20c0-3.1 2-5.4 4.5-5.4S12 16.9 12 20"/><rect x="12" y="3.5" width="9" height="7.5" rx="1.2"/><path d="M14.3 7.2h4.4"/>',
+ cast:'<rect x="3" y="5" width="18" height="14" rx="2"/><path d="M11.5 9.5H16v4.5M16 9.5l-5 5"/>',
+ grid:'<rect x="4" y="4" width="6.5" height="6.5" rx="1.3"/><rect x="13.5" y="4" width="6.5" height="6.5" rx="1.3"/><rect x="4" y="13.5" width="6.5" height="6.5" rx="1.3"/><rect x="13.5" y="13.5" width="6.5" height="6.5" rx="1.3"/>',
+};
+const Ic=({n})=>html`<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" dangerouslySetInnerHTML=${{__html:P[n]||''}}></svg>`;
+
+/* ---------- sample class data (fictional) ---------- */
+const TEACHER='서디벗';
+const STU={};
+const CLASSES=[{id:'c1',name:'6학년 3반',sub:'2026학년도',ids:[]},{id:'c2',name:'6학년 과학 동아리',sub:'창의적 체험활동',ids:[]}];
+['강민준','김서연','김하늘','박지호','이서준','최하은','정우진','윤지아','장도윤','임수아','한예준','오채원','서지민','신유나','권태윤','황다은','안시우','송아린','전현우','홍지유','고은호','문소율','양건우','배나윤']
+ .forEach((n,i)=>{ const id=n==='김하늘'?'me':'a'+i; STU[id]={id,name:n,cls:'c1'}; CLASSES[0].ids.push(id); });
+['김도현','이하린','박시윤','최준서','정예린','조민재','유다인','남궁현'].forEach((n,i)=>{ const id='b'+i; STU[id]={id,name:n,cls:'c2'}; CLASSES[1].ids.push(id); });
+const full=id=>STU[id].name;
+const ABSENT='a23';
+const AVC=['#1967D2','#188038','#C5221F','#E37400','#9334E6','#007B83','#B80672','#5F6368'];
+const avColor=id=>{ let h=0; for(const c of id) h=(h*33+c.charCodeAt(0))%997; return AVC[h%AVC.length]; };
+
+const CAT={
+ assignment:[
+  {key:'a1',type:'assignment',title:'행성 탐구 활동지',sub:'과제 · 오늘까지',url:'classroom.google.com/c/6-3/a/planet-sheet',kind:'worksheet'},
+  {key:'a2',type:'assignment',title:'태양계 퀴즈',sub:'퀴즈 과제',url:'classroom.google.com/c/6-3/a/solar-quiz',kind:'quiz'}],
+ tab:[
+  {key:'t1',type:'tab',title:'태양계 탐험 – 행성 여행',url:'space.example.org/planets',kind:'space'},
+  {key:'t2',type:'tab',title:'행성 크기 비교 영상',url:'video.example.org/watch/planet-size',kind:'video'},
+  {key:'t3',type:'tab',title:'행성 비교표',url:'docs.google.com/spreadsheets/d/planet-table',kind:'table'}]
+};
+const RESTRICT=[
+ {v:'page',t:'이 페이지로 제한됨'},
+ {v:'site',t:'이 사이트로 제한됨'},
+ {v:'google',t:'Google 웹사이트로 제한됨'},
+ {v:'none',t:'제한 없음'}];
+const host=u=>(u||'').split('/')[0];
+const rLabel=v=>(RESTRICT.find(r=>r.v===v)||RESTRICT[1]).t;
+const rOpt=(v,url)=>v==='site'?`이 사이트로 제한됨(${host(url)})`:rLabel(v);
+const rSub=r=>rLabel(r.restrict)+(r.ext&&r.restrict!=='none'?' | 외부 링크를 열 수 있음':'');
+const BTABS=[{key:'newtab',title:'새 탭',url:'',kind:'newtab'},{key:'fun',title:'웃긴 동영상 모음',url:'video.example.org/funny',kind:'funvideo'},{key:'game',title:'블록 쌓기 게임',url:'games.example.org/blocks',kind:'game'}];
+const OFF=[BTABS[1],BTABS[2],{key:'toon',title:'인기 웹툰 보기',url:'comics.example.org/top',kind:'funvideo'}];
+const isG=u=>/(^|\.)google\.com$/.test(host(u));
+const LINKS={
+ space:[{label:'목성 자세히 보기',url:'space.example.org/planets/jupiter'},{label:'행성 사진 검색하기',url:'www.google.com/search?q=행성'},{label:'우주 비행 게임 하러 가기',url:'games.example.org/space'}],
+ worksheet:[{label:'참고 자료: 태양계 탐험',url:'space.example.org/planets'},{label:'모둠 조사 계획서 열기',url:'docs.google.com/document/d/plan'}],
+ video:[{label:'다음 영상: 토성의 고리',url:'video.example.org/watch/rings'},{label:'추천: 우주 게임 광고',url:'games.example.org/ad'}],
+ table:[{label:'관련 문서: 모둠 조사 계획서',url:'docs.google.com/document/d/plan'},{label:'자료 출처 사이트',url:'space.example.org/data'}],
+ quiz:[],
+};
+const linksFor=(kind,url)=>LINKS[kind]||[{label:'같은 사이트의 다른 페이지',url:host(url)+'/next'},{label:'다른 사이트로 가는 링크',url:'news.example.org/today'}];
+function canGo(r,link){
+ const same=host(link.url)===host(r.url);
+ if(r.restrict==='none') return true;
+ if(!same&&r.ext) return true;
+ if(r.restrict==='page') return false;
+ if(r.restrict==='google') return same||isG(link.url);
+ return same;
+}
+const LANGS=[['ko','한국어'],['en','English'],['zh','中文'],['vi','Tiếng Việt'],['ru','Русский'],['ja','日本語']];
+const SAY=[
+ {ko:'여러분, 방금 보낸 활동지를 열어 보세요.',en:'Everyone, please open the worksheet I just sent.',zh:'同学们，请打开我刚才发送的学习单。',vi:'Các em hãy mở phiếu học tập vừa được gửi nhé.',ru:'Ребята, откройте, пожалуйста, только что отправленный рабочий лист.',ja:'みなさん、今送ったワークシートを開いてください。'},
+ {ko:'오늘은 태양계 행성의 특징을 조사해 봅시다.',en:"Today, let's explore the features of the planets in our solar system.",zh:'今天我们来探究太阳系行星的特点。',vi:'Hôm nay chúng ta cùng tìm hiểu đặc điểm của các hành tinh trong Hệ Mặt Trời.',ru:'Сегодня мы изучим особенности планет Солнечной системы.',ja:'今日は太陽系の惑星の特徴を調べてみましょう。'},
+ {ko:'모둠별로 행성 하나를 골라 조사한 내용을 기록하세요.',en:'In your groups, choose one planet and write down what you find.',zh:'请各小组选择一颗行星，把调查的内容记录下来。',vi:'Mỗi nhóm hãy chọn một hành tinh và ghi lại những gì các em tìm hiểu được.',ru:'Выберите в группе одну планету и запишите то, что вы узнали.',ja:'グループごとに惑星を一つ選んで、調べたことを記録しましょう。'},
+ {ko:'잠시 기기를 멈출게요. 앞을 봐 주세요.',en:"I'm going to pause your devices for a moment. Please look up front.",zh:'我先暂停一下大家的设备，请看前面。',vi:'Thiết bị sẽ được tạm dừng trong giây lát. Các em hãy nhìn lên phía trước nhé.',ru:'Я ненадолго приостановлю устройства. Смотрите, пожалуйста, вперёд.',ja:'少しの間、端末を一時停止します。前を見てください。'},
+ {ko:'10분 뒤에 모둠별로 발표할 거예요.',en:'In 10 minutes, each group will present.',zh:'10分钟后，各小组要进行发表。',vi:'10 phút nữa, từng nhóm sẽ lên trình bày.',ru:'Через 10 минут каждая группа выступит с докладом.',ja:'10分後に、グループごとに発表します。'},
+ {ko:'잘했어요! 오늘 배운 내용을 한 문장으로 정리해 볼까요?',en:"Well done! Can you sum up today's lesson in one sentence?",zh:'做得很好！我们用一句话总结今天学到的内容吧。',vi:'Các em làm tốt lắm! Hãy tóm tắt bài học hôm nay trong một câu nhé.',ru:'Молодцы! Давайте подведём итог урока одним предложением.',ja:'よくできました！今日学んだことを一文でまとめてみましょう。'},
+];
+
+/* ---------- state ---------- */
+let uidN=0; const uid=()=>'x'+(++uidN);
+const init=()=>({
+ mode:'landing', now:Date.now(),
+ roster:[], res:[], cap:{mine:false,allow:false,tr:false},
+ prefs:{dur:40,view:'explore'},
+ sess:null, joined:{}, act:{}, viewing:null, lines:[],
+ t:{page:'home',menu:null,dlg:null,win:'ct',btab:'t1'},
+ me:{win:'browser',btab:'newtab',ctOpen:false,view:'home',res:null,nav:{},blocked:null,cap:false,lang:'ko',size:0,top:false,light:false,ws:{planet:'',note:''},quiz:{},code:'',codeErr:'',tabsMenu:false},
+ toasts:{t:[],s:[]}, remoteRoster:true, sayIdx:0,
+});
+let S=init();
+const subs=new Set();
+const emit=()=>subs.forEach(f=>f());
+const up=fn=>{ fn(S); emit(); };
+const focusOn=()=>!!(S.sess&&S.sess.view==='focus');
+const paused=()=>!!(S.sess&&S.sess.view==='lock');
+const VIEWS=[['explore','탐색','학생이 기기와 앱을 자유롭게 사용할 수 있습니다.'],['focus','집중','학생이 수업 도구만 사용할 수 있습니다.'],['lock','잠금','학생 기기를 사용할 수 없습니다. 자막은 계속 표시됩니다.']];
+const viewDesc=v=>(VIEWS.find(x=>x[0]===v)||VIEWS[0])[2];
+const minsLeft=()=>S.sess?Math.max(0,Math.ceil((S.sess.end-S.now)/60000)):0;
+const mmss=ms=>{ const t=Math.max(0,Math.ceil(ms/1000)); return String(Math.floor(t/60)).padStart(2,'0')+':'+String(t%60).padStart(2,'0'); };
+const clock=t=>new Date(t).toLocaleTimeString('ko-KR',{hour:'numeric',minute:'2-digit'});
+const sessName=()=>{ const d=new Date(); return '일월화수목금토'[d.getDay()]+'요일 '+(d.getHours()<12?'오전':'오후')+' 수업'; };
+const mkCode=()=>{ let c=''; for(let i=0;i<6;i++) c+=String.fromCharCode(65+Math.floor(Math.random()*26)); return c; };
+function toast(side,text,action){
+ const id=uid();
+ up(s=>{ s.toasts[side].push({id,text,action}); if(s.toasts[side].length>3) s.toasts[side].shift(); });
+ setTimeout(()=>up(s=>{ s.toasts[side]=s.toasts[side].filter(x=>x.id!==id); }), action?6500:3600);
+}
+const HOME={title:'수업 도구 홈',url:'',kind:'cthome'};
+function bias(id){ let h=0; for(const c of id) h=(h*31+c.charCodeAt(0))%97; return (h%10)/10; }
+function pickAct(id){
+ const r=Math.random(), offP=focusOn()?0:0.06+bias(id)*0.3;
+ if(r<offP){ const o=OFF[Math.floor(Math.random()*OFF.length)]; return {title:o.title,url:o.url,kind:o.kind,off:true}; }
+ if(S.res.length&&r<0.94){ const x=S.res[Math.floor(Math.random()*S.res.length)]; return {title:x.title,url:x.url,kind:x.kind,res:x.id}; }
+ return HOME;
+}
+function meAct(){
+ const m=S.me;
+ if(m.win==='browser'&&!focusOn()){ const b=BTABS.find(x=>x.key===m.btab); return {title:b.title,url:b.url,kind:b.kind,off:b.kind!=='newtab'}; }
+ const r=m.view==='page'&&S.res.find(x=>x.id===m.res); if(!r) return HOME;
+ const st=m.nav[r.id]||[], top=st[st.length-1];
+ return top?{title:top.label,url:top.url,kind:'generic',res:r.id}:{title:r.title,url:r.url,kind:r.kind,res:r.id};
+}
+const actOf=id=>(!S.sess||!S.joined[id])?null:(id==='me'?meAct():(S.act[id]||HOME));
+
+function joinLater(id){
+ if(!S.sess) return;
+ if(id==='me'){ up(s=>{ s.joined.me=true; s.me.ctOpen=true; s.me.win='ct'; s.me.view='home'; s.me.res=null; s.me.nav={}; }); toast('s',`${TEACHER}님의 수업 세션이 시작되었습니다`); return; }
+ if(id===ABSENT) return;
+ const sess=S.sess;
+ setTimeout(()=>{ if(S.sess!==sess||!S.roster.includes(id)) return; up(s=>{ s.joined[id]=true; s.act[id]=pickAct(id); }); }, 300+Math.random()*2400);
+}
+function leaveMe(msg){ up(s=>{ delete s.joined.me; s.me.win='browser'; s.me.ctOpen=false; s.me.view='home'; s.me.res=null; s.me.nav={}; s.me.blocked=null; s.me.cap=false; s.me.tabsMenu=false; }); toast('s',msg); }
+
+const A={
+ enter(mode){ up(s=>{ s.mode=mode; }); try{ window.scrollTo(0,0); }catch(e){} },
+ reset(){ const m=S.mode; S=init(); S.mode=m; emit(); },
+ page(p){ up(s=>{ s.t.page=p; s.t.menu=null; }); },
+ menu(m){ up(s=>{ s.t.menu=s.t.menu===m?null:m; }); },
+ resetSetup(){ up(s=>{ s.roster=[]; s.res=[]; s.cap={mine:false,allow:false,tr:false}; s.prefs={dur:40,view:'explore'}; }); toast('t','세션 설정을 재설정했습니다'); },
+ dlg(d){ up(s=>{ s.t.dlg=d; s.t.menu=null; }); },
+ tWin(w){ up(s=>{ s.t.win=w; }); },
+ tTab(k){ up(s=>{ s.t.btab=k; }); },
+ addStudents(ids){
+  const fresh=ids.filter(id=>!S.roster.includes(id));
+  up(s=>{ fresh.forEach(id=>s.roster.push(id)); s.t.dlg=null; });
+  if(fresh.length) toast('t',`학생 ${fresh.length}명을 추가했습니다`);
+  if(S.sess) fresh.forEach(joinLater);
+ },
+ removeStudent(id){
+  const was=!!(S.sess&&S.joined[id]);
+  up(s=>{ s.roster=s.roster.filter(x=>x!==id); delete s.joined[id]; if(s.viewing&&s.viewing.id===id) s.viewing=null; });
+  if(was&&id==='me') leaveMe('선생님이 세션에서 나를 삭제했습니다');
+ },
+ addRes(list){
+  if(!list.length) return;
+  up(s=>{ list.forEach(r=>s.res.push({...r,id:uid(),restrict:'site',ext:false})); s.t.dlg=null; });
+  toast('t',`리소스 ${list.length}개를 공유했습니다`);
+  if(S.sess&&S.joined.me) toast('s',`새 탭이 공유되었습니다 · ${list[0].title}${list.length>1?` 외 ${list.length-1}개`:''}`);
+ },
+ removeRes(id){ up(s=>{ s.res=s.res.filter(r=>r.id!==id); if(s.me.res===id){ s.me.res=null; s.me.view='home'; } delete s.me.nav[id]; Object.keys(s.act).forEach(k=>{ if(s.act[k]&&s.act[k].res===id) s.act[k]=HOME; }); }); },
+ setNav(id,v,ext){ up(s=>{ const r=s.res.find(x=>x.id===id); if(r){ r.restrict=v; r.ext=ext; } s.t.dlg=null; }); toast('t','탐색 설정을 적용했습니다'); },
+ cap(k,v){
+  up(s=>{ s.cap[k]=v; if(k==='allow'&&!v){ s.cap.tr=false; s.me.cap=false; s.me.lang='ko'; } if(k==='tr'&&!v) s.me.lang='ko'; });
+  if(S.sess&&S.joined.me){
+   if(k==='allow'&&v) toast('s','선생님이 음성 자막을 허용했습니다',{label:'자막 표시',fn:()=>A.meCap(true)});
+   if(k==='tr'&&v) toast('s','선생님이 번역을 허용했습니다. 자막 상자에서 언어를 고를 수 있어요');
+  }
+ },
+ setDur(n){ up(s=>{ s.prefs.dur=Math.max(5,Math.min(240,n||5)); }); },
+ setPrefView(v){ up(s=>{ s.prefs.view=v; }); },
+ start(){
+  up(s=>{ s.sess={name:sessName(),start:s.now,end:s.now+s.prefs.dur*60000,view:s.prefs.view,code:mkCode()}; s.joined={}; s.act={}; s.viewing=null; s.lines=[]; s.t.dlg=null; s.t.menu=null; s.t.page='home'; s.t.win='ct'; });
+  toast('t','세션을 시작했습니다');
+  S.roster.slice().forEach(joinLater);
+ },
+ setView(v){
+  if(!S.sess||S.sess.view===v) return;
+  const was=S.sess.view;
+  up(s=>{ s.sess.view=v; if(v!=='explore'){ Object.keys(s.act).forEach(k=>{ if(s.act[k]&&s.act[k].off) s.act[k]=pickAct(k); }); if(s.joined.me){ s.me.ctOpen=true; s.me.win='ct'; } } });
+  if(S.joined.me){
+   if(v==='focus') toast('s','선생님이 수업 도구만 사용하도록 설정했습니다');
+   else if(v==='explore') toast('s',was==='lock'?'기기 잠금이 해제되었습니다':'이제 다른 앱도 사용할 수 있습니다');
+  }
+ },
+ addTime(n){ up(s=>{ if(s.sess) s.sess.end+=n*60000; s.t.menu=null; }); toast('t',`세션 시간을 ${n}분 늘렸습니다`); },
+ copyCode(){ try{ navigator.clipboard&&navigator.clipboard.writeText(S.sess.code).catch(()=>{}); }catch(e){} toast('t','참여 코드를 복사했습니다'); },
+ watch(id){ up(s=>{ s.viewing={id,since:Date.now()}; }); },
+ unwatch(){ up(s=>{ s.viewing=null; }); },
+ say(line){ if(!S.sess||!line.ko.trim()) return; up(s=>{ s.lines.push({...line,id:uid(),at:Date.now()}); if(s.lines.length>2) s.lines.shift(); }); },
+ end(auto){
+  const had=!!S.joined.me;
+  up(s=>{ s.sess=null; s.joined={}; s.act={}; s.viewing=null; s.lines=[]; s.t.menu=null; s.t.dlg=null; s.t.page='home'; });
+  toast('t',auto?'세션 시간이 끝나 자동으로 종료되었습니다':'세션을 종료했습니다');
+  if(had) leaveMe('수업 세션이 종료되었습니다. 기기를 평소처럼 사용할 수 있어요');
+ },
+ meWin(w){ up(s=>{ s.me.tabsMenu=false; if(w==='ct'){ s.me.ctOpen=true; s.me.win='ct'; } else if(!(focusOn()&&s.joined.me)) s.me.win='browser'; }); },
+ meClose(){ up(s=>{ if(focusOn()&&s.joined.me) return; s.me.win='browser'; s.me.tabsMenu=false; if(!s.joined.me) s.me.ctOpen=false; }); },
+ meBtab(k){ up(s=>{ s.me.btab=k; }); },
+ meOpen(id){ up(s=>{ s.me.res=id; s.me.view='page'; s.me.blocked=null; s.me.tabsMenu=false; }); },
+ meHome(){ up(s=>{ s.me.view='home'; s.me.blocked=null; s.me.tabsMenu=false; }); },
+ mePage(){ up(s=>{ if(s.me.res&&s.res.some(r=>r.id===s.me.res)) s.me.view='page'; s.me.tabsMenu=false; }); },
+ meTabsMenu(){ up(s=>{ s.me.tabsMenu=!s.me.tabsMenu; }); },
+ meGo(r,link){
+  if(canGo(r,link)) up(s=>{ (s.me.nav[r.id]=s.me.nav[r.id]||[]).push(link); s.me.blocked=null; });
+  else up(s=>{ s.me.blocked={text:'이 링크에 대한 액세스가 허용되지 않습니다. 액세스 권한이 필요한 경우 교사에게 문의하세요.',at:Date.now()}; });
+ },
+ meBack(){ up(s=>{ const st=s.me.nav[s.me.res]; if(st&&st.length) st.pop(); s.me.blocked=null; }); },
+ meReset(){ up(s=>{ s.me.nav={}; s.me.view='home'; s.me.res=null; s.me.blocked=null; }); toast('s','공유된 탭을 처음 상태로 재설정했습니다'); },
+ meCode(v){ up(s=>{ s.me.code=v; s.me.codeErr=''; }); },
+ meJoin(){
+  const c=S.me.code.replace(/[^a-z]/gi,'').toUpperCase();
+  if(!S.sess||c!==S.sess.code){ up(s=>{ s.me.codeErr=S.sess?'참여 코드가 올바르지 않습니다. 다시 확인해 주세요':'진행 중인 세션이 없습니다. 선생님이 세션을 시작하면 참여할 수 있어요'; }); return; }
+  up(s=>{ s.joined.me=true; if(!s.roster.includes('me')) s.roster.push('me'); s.me.code=''; s.me.ctOpen=true; s.me.win='ct'; s.me.view='home'; });
+  toast('s','세션에 참여했습니다'); toast('t',`${full('me')} 학생이 참여 코드로 참여했습니다`);
+ },
+ meCap(v){ up(s=>{ s.me.cap=v; }); },
+ meLang(v){ up(s=>{ s.me.lang=v; }); },
+ meSize(){ up(s=>{ s.me.size=(s.me.size+1)%3; }); },
+ meTop(){ up(s=>{ s.me.top=!s.me.top; }); },
+ meLight(){ up(s=>{ s.me.light=!s.me.light; }); },
+ meWs(k,v){ up(s=>{ s.me.ws[k]=v; }); },
+ meQuiz(q,v){ up(s=>{ s.me.quiz[q]=v; }); },
+};
+
+let tickN=0;
+setInterval(()=>{
+ const now=Date.now(); tickN++;
+ up(s=>{
+  s.now=now;
+  if(s.sess&&tickN%7===0&&s.sess.view!=='lock') Object.keys(s.joined).forEach(id=>{ if(id!=='me'&&Math.random()<0.3) s.act[id]=pickAct(id); });
+  if(s.lines.length) s.lines=s.lines.filter(l=>now-l.at<15000);
+  if(s.me.blocked&&now-s.me.blocked.at>6000) s.me.blocked=null;
+ });
+ if(S.sess&&now>=S.sess.end) A.end(true);
+},500);
+
+/* ---------- shared device parts ---------- */
+const typeLabel=t=>t==='assignment'?'클래스룸 과제':t==='tab'?'탭':'링크';
+const FAV={worksheet:['#E8710A','personfill'],quiz:['#E8710A','personfill'],space:['#1A73E8','globe'],video:['#7B5CD6','play'],table:['#188038','grid']};
+const Fav=({r,k,u})=>{ const kind=k||(r&&r.kind), url=u||(r&&r.url)||'', f=FAV[kind]; return html`<span class="fav" style=${{background:f?f[0]:'#5F6B7A'}}>${f?html`<${Ic} n=${f[1]}/>`:(host(url).replace(/^www\./,'')[0]||'?').toUpperCase()}</span>`; };
+const Toasts=({side,hi})=>html`<div class=${'toasts'+(hi?' hi':'')} role="status" aria-live="polite">${S.toasts[side].map(t=>html`<div class="toast" key=${t.id}><span>${t.text}</span>${t.action&&html`<button onClick=${t.action.fn}>${t.action.label}</button>`}</div>`)}</div>`;
+function Shelf({apps,extra}){
+ return html`<div class="shelf">
+  <button class="launch" aria-label="런처" tabindex="-1"><i></i></button>
+  <div class="apps">${apps.map(a=>html`<button class=${'app'+(a.open?' open':'')+(a.act?' act':'')} aria-label=${a.label} title=${a.label} onClick=${a.on}><span class="ic" style=${{background:a.bg,color:a.fg}}><${Ic} n=${a.icon}/></span></button>`)}</div>
+  <div class="tray">${extra}<span class="pill2"><${Ic} n="wifi"/><${Ic} n="batt"/><span>${clock(S.now)}</span></span></div>
+ </div>`;
+}
+function Fit({children}){
+ const outer=useRef(null); const [box,setBox]=useState({w:0,h:0});
+ useLayoutEffect(()=>{
+  const el=outer.current; if(!el) return;
+  const measure=()=>{ const W=el.clientWidth,H=el.clientHeight; let w=W,h=W/1.6; if(h>H){ h=H; w=H*1.6; } setBox({w:Math.max(0,Math.floor(w)),h:Math.max(0,Math.floor(h))}); };
+  measure(); const ro=new ResizeObserver(measure); ro.observe(el); return ()=>ro.disconnect();
+ },[]);
+ return html`<div ref=${outer} style="position:absolute;inset:46px 14px 14px;display:grid;place-items:center">${box.w>0&&html`<div class="mbox" style=${{width:box.w+'px',height:box.h+'px'}}><div class="minner" style=${{transform:`scale(${box.w/1024})`}}>${children}</div></div>`}</div>`;
+}
+function CapBox({who}){
+ const lines=S.lines;
+ if(who==='t') return lines.length?html`<div class="cap"><div class="cap-bar"><${Ic} n="subtitles"/><span>내 음성 자막</span></div><div class="cap-t">${lines.map((l,i)=>html`<div key=${l.id} class=${i<lines.length-1?'old':''}>${l.ko}</div>`)}</div></div>`:null;
+ const m=S.me, lang=S.cap.tr?m.lang:'ko';
+ const untrans=lang!=='ko'&&lines.some(l=>!l[lang]);
+ return html`<div class=${'cap s'+m.size+(m.top?' top':'')+(m.light?' light':'')}>
+  <div class="cap-bar"><${Ic} n="subtitles"/><span>실시간 자막</span><span class="grow"></span>
+   ${S.cap.tr&&html`<label style="display:flex;align-items:center;gap:4px"><${Ic} n="translate"/><select aria-label="번역 언어" value=${lang} onChange=${e=>A.meLang(e.target.value)}>${LANGS.map(([v,l])=>html`<option value=${v}>${l}</option>`)}</select></label>`}
+   <button class="ib" title="글자 크기" aria-label="글자 크기 바꾸기" onClick=${A.meSize}><${Ic} n="textsize"/></button>
+   <button class="ib" title="위치 바꾸기" aria-label="자막 위치 바꾸기" onClick=${A.meTop}><${Ic} n="swap"/></button>
+   <button class="ib" title="배경색 바꾸기" aria-label="자막 배경색 바꾸기" onClick=${A.meLight}><${Ic} n="contrast"/></button>
+   <button class="ib" title="자막 끄기" aria-label="자막 끄기" onClick=${()=>A.meCap(false)}><${Ic} n="x"/></button>
+  </div>
+  <div class="cap-t">${lines.length?lines.map((l,i)=>html`<div key=${l.id} class=${i<lines.length-1?'old':''}>${lang==='ko'?l.ko:(l[lang]||l.ko)}</div>`):html`<span class="old">선생님이 말하면 여기에 자막이 나타납니다</span>`}</div>
+  ${untrans&&html`<div class="cap-note">체험판에서는 직접 입력한 문장은 번역되지 않고 원문으로 보여요</div>`}
+ </div>`;
+}
+const star=(cx,cy,R,r,n)=>Array.from({length:n*2},(_,i)=>{ const a=Math.PI*i/n-Math.PI/2, d=i%2?r:R; return (cx+d*Math.cos(a)).toFixed(1)+','+(cy+d*Math.sin(a)).toFixed(1); }).join(' ');
+const poly=(cx,cy,r,n)=>Array.from({length:n},(_,i)=>{ const a=2*Math.PI*i/n-Math.PI/2; return (cx+r*Math.cos(a)).toFixed(1)+','+(cy+r*Math.sin(a)).toFixed(1); }).join(' ');
+const flower=(cx,cy,R,fill)=>`<circle cx="${cx}" cy="${cy}" r="${R}" fill="${fill}"/>`+Array.from({length:9},(_,i)=>{ const a=2*Math.PI*i/9; return `<circle cx="${(cx+R*.85*Math.cos(a)).toFixed(1)}" cy="${(cy+R*.85*Math.sin(a)).toFixed(1)}" r="${(R*.42).toFixed(1)}" fill="${fill}"/>`; }).join('');
+const DECO=flower(70,34,22,'#C9E09E')+`<rect x="140" y="20" width="46" height="46" rx="15" transform="rotate(22 163 43)" fill="#B7D487"/><polygon points="${star(232,30,27,21,10)}" fill="#FFFFFF"/><circle cx="286" cy="82" r="22" fill="#B2D27E"/><polygon points="${poly(196,106,28,5)}" fill="#FFFFFF" stroke="#FFFFFF" stroke-width="10" stroke-linejoin="round"/><polygon points="238,154 282,154 262,114" fill="#B8D68A" stroke="#B8D68A" stroke-width="8" stroke-linejoin="round"/><ellipse cx="128" cy="118" rx="21" ry="25" fill="#FFFFFF"/>`+flower(96,172,30,'#C9E09E');
+const HeroDeco=()=>html`<svg class="deco" viewBox="0 0 320 160" preserveAspectRatio="xMaxYMid slice" aria-hidden="true" dangerouslySetInnerHTML=${{__html:DECO}}></svg>`;
+
+/* ---------- mock web pages ---------- */
+const PLANETS=[['수성',7,'#A5A29B'],['금성',12,'#E3BB76'],['지구',13,'#3F7FD6'],['화성',9,'#D2693C'],['목성',40,'#D9A066'],['토성',34,'#E3C77F',1],['천왕성',22,'#8FD3DE'],['해왕성',21,'#4B6BD6']];
+const PT=[['수성',1,'0.38'],['금성',2,'0.95'],['지구',3,'1.00'],['화성',4,'0.53'],['목성',5,'11.21'],['토성',6,'9.45'],['천왕성',7,'4.01'],['해왕성',8,'3.88']];
+const THUMBS=[['웃긴 고양이 모음','#F28B82','#FBBC04'],['1분 마술 도전','#A142F4','#4285F4'],['급식 먹방 브이로그','#34A853','#FBBC04'],['게임 하이라이트','#EA4335','#A142F4'],['동물 이상한 행동','#24C1E0','#34A853'],['몰래카메라 모음','#F439A0','#FA7B17']];
+const BLK=['#FF5F5F','#FFC53D','#4DD4AC','#4C9AFF','#B37FEB','#1d1d2b','#1d1d2b','#1d1d2b'];
+const VWS={planet:'토성',note:'토성은 고리가 뚜렷하게 보인다.'};
+function PageMock({kind,title,url,onLink,sub,own}){
+ const qn=useRef(uid()).current;
+ const L=sub?[]:linksFor(kind,url);
+ const links=L.length?html`<div class="plinks">${L.map(l=>html`<button onClick=${()=>onLink&&onLink(l)}><${Ic} n="link"/>${l.label} <small>${host(l.url)}</small></button>`)}</div>`:null;
+ if(kind==='space') return html`<h1>행성 여행을 떠나요</h1><p class="lead">태양에서 가까운 순서대로 행성을 만나 보세요.</p>
+  <div class="planets"><i class="sun"></i>${PLANETS.map(([n,z,c,ring])=>html`<span title=${n} class=${'planet'+(ring?' ring':'')} style=${{width:z+'px',height:z+'px',background:c}}></span>`)}</div>
+  <p class="lead" style="margin-top:10px">수성 · 금성 · 지구 · 화성 · 목성 · 토성 · 천왕성 · 해왕성</p>${links}`;
+ if(kind==='worksheet'){ const d=own?S.me.ws:VWS; return html`<h1>행성 탐구 활동지</h1><p class="lead">6학년 3반 · 클래스룸 과제 · 오늘까지</p>
+  <div class="ws"><div><b>1. 조사할 행성을 고르세요</b><div class="opts" style="margin-top:6px">${PLANETS.map(([p])=>html`<button aria-pressed=${d.planet===p} onClick=${()=>own&&A.meWs('planet',p)}>${p}</button>`)}</div></div>
+  <label><b>2. 알게 된 점을 적어 보세요</b><textarea style="margin-top:6px" readOnly=${!own} value=${d.note} onInput=${e=>own&&A.meWs('note',e.target.value)} placeholder="예: 목성은 태양계에서 가장 큰 행성이다."></textarea></label></div>${links}`; }
+ if(kind==='quiz'){ const q=own?S.me.quiz:{q1:'목성'}; const Q=[['q1','태양계에서 가장 큰 행성은 무엇일까요?',['지구','목성','화성']],['q2','고리가 가장 뚜렷하게 보이는 행성은 무엇일까요?',['금성','토성','수성']]];
+  return html`<h1>태양계 퀴즈</h1><p class="lead">알맞은 답을 고르세요.</p><div class="quiz">${Q.map(([k,t,opts],i)=>html`<fieldset><legend>${i+1}. ${t}</legend>${opts.map(o=>html`<label><input type="radio" name=${qn+k} checked=${q[k]===o} disabled=${!own} onChange=${()=>A.meQuiz(k,o)}/>${o}</label>`)}</fieldset>`)}</div>`; }
+ if(kind==='video') return html`<div class="player"><span class="pb"><${Ic} n="play"/></span><span class="bar2"><i></i></span></div><h1 style="margin-top:12px">${title}</h1><p class="lead">행성의 크기를 지구와 나란히 놓고 비교해 봐요.</p>${links}`;
+ if(kind==='table') return html`<div class="sheetbar"><i style="width:60px"></i><i style="width:90px"></i><i style="width:40px"></i></div><h1>행성 비교표</h1><p class="lead">지구의 지름을 1로 했을 때 각 행성의 지름</p>
+  <table class="ptable"><thead><tr><th>행성</th><th>태양에서 순서</th><th>지름 (지구=1)</th></tr></thead><tbody>${PT.map(([n,o,d])=>html`<tr><td>${n}</td><td class="n">${o}</td><td class="n">${d}</td></tr>`)}</tbody></table>${links}`;
+ if(kind==='funvideo') return html`<h1>${title}</h1><p class="lead">지금 인기 있는 영상</p><div class="thumbs">${THUMBS.map(([t,a,b])=>html`<div class="thumb"><i style=${{background:`linear-gradient(135deg,${a},${b})`}}><${Ic} n="play"/></i><span>${t}</span></div>`)}</div>`;
+ if(kind==='game') return html`<h1>블록 쌓기 게임</h1><p class="lead">점수 1,240 · 3단계</p><div class="blocks">${Array.from({length:80},(_,i)=>html`<i style=${{background:BLK[(i*7+(i>>3)*5)%BLK.length]}}></i>`)}</div>`;
+ if(kind==='newtab') return html`<div class="nt"><div class="sb"><${Ic} n="search"/><span>검색어 또는 URL 입력</span></div><div class="sc">${[['학','학급 게시판'],['식','급식 식단'],['사','국어사전'],['계','계산기']].map(([c,t])=>html`<span><i>${c}</i>${t}</span>`)}</div></div>`;
+ return html`<h1>${title}</h1><p class="lead">${url}</p><p>체험판에서는 실제 사이트 대신 모의 페이지가 열려요.</p>${links}`;
+}
+
+/* ---------- student: class tools app ---------- */
+function SaTool({own,inPage,hasRes,canBack}){
+ const go=f=>own?f:undefined;
+ return html`<div class="sa-tool">
+  <button aria-pressed=${!inPage} aria-label="수업 도구 홈" title="수업 도구 홈" onClick=${go(A.meHome)}><${Ic} n="layoutl"/></button>
+  <button aria-pressed=${!!inPage} aria-label="탭 보기" title="탭 보기" disabled=${!hasRes} onClick=${go(A.mePage)}><${Ic} n="layoutr"/></button>
+  <i class="sep"></i>
+  <button aria-label="뒤로" title="뒤로" disabled=${!canBack} onClick=${go(A.meBack)}><${Ic} n="arrowl"/></button>
+  <button aria-label="앞으로" title="앞으로" disabled=${true}><${Ic} n="arrowr"/></button>
+  <button aria-label="새로고침" title="새로고침" disabled=${!inPage}><${Ic} n="refresh"/></button>
+ </div>`;
+}
+const SaStrip=({own,active})=>html`<div class="sa-strip" role="tablist">
+ <button class="home" role="tab" aria-selected=${active==='home'} aria-label="수업 도구 홈" title="수업 도구 홈" onClick=${()=>own&&A.meHome()}><${Ic} n="home"/></button>
+ ${S.res.map(r=>[html`<i class="sep" key=${'s'+r.id}></i>`,html`<button key=${r.id} role="tab" aria-selected=${active===r.id} title=${r.title} onClick=${()=>own&&A.meOpen(r.id)}><span>${r.title}</span></button>`])}
+ <span class="end" aria-hidden="true"><${Ic} n="windows"/></span>
+</div>`;
+function SaHome({own}){
+ const sess=S.sess, m=S.me, allowed=S.cap.allow, on=!!(own&&allowed&&m.cap);
+ return html`<div class="sa-col">
+  <div class="sa-hero"><${HeroDeco}/><h2>${sess.name}</h2><p>교사는 수업 중에 리소스를 공유하고 학생의 화면을 볼 수 있습니다</p><span class="st">${clock(S.now)}<${Ic} n="wifi"/><${Ic} n="batt"/></span></div>
+  <div class="sa-2">
+   <div class="sa-card"><${Ic} n="pie"/><span>${minsLeft()}분 남음</span></div>
+   <div class="sa-card"><${Ic} n="subtitles"/><span>선생님의 음성 자막 표시</span><button class="sw g" role="switch" aria-label="선생님의 음성 자막 표시" aria-checked=${on} disabled=${!allowed} title=${allowed?'':'선생님이 자막을 허용하면 켤 수 있어요'} onClick=${()=>own&&A.meCap(!m.cap)}></button></div>
+  </div>
+  <div class="sa-tabs"><div class="sa-hd"><${Ic} n="tab"/><span>탭</span><button class="sa-rst" onClick=${()=>own&&A.meReset()}><${Ic} n="reset"/>리소스 재설정</button></div>
+   <div class="sa-list">${S.res.length?S.res.map(r=>html`<button class="sa-li" key=${r.id} onClick=${()=>own&&A.meOpen(r.id)}><${Fav} r=${r}/><span class="tx">${r.title}</span><span class="nv" title=${rSub(r)}><${Ic} n="sliders"/></span></button>`):html`<div class="sa-empty">선생님이 아직 공유한 탭이 없습니다</div>`}</div>
+  </div>
+ </div>`;
+}
+function SaPage({r,label,url,kind,sub,own}){
+ const m=S.me;
+ return html`<div class="sa-page">
+  <div class="sa-ph"><${Fav} r=${r} k=${kind==='generic'?'':kind} u=${url}/><b>${label}</b><span class="u">${url}</span><span class="ri" title=${rSub(r)}><${Ic} n="sliders"/>${rLabel(r.restrict)}</span></div>
+  ${own&&m.blocked&&html`<div class="blocked" role="alert"><${Ic} n="block"/><span>${m.blocked.text}</span></div>`}
+  <div class="page"><${PageMock} kind=${kind} title=${label} url=${url} sub=${sub} own=${own} onLink=${own?(l=>A.meGo(r,l)):null}/></div>
+ </div>`;
+}
+function StudentApp(){
+ const m=S.me, r=m.res?S.res.find(x=>x.id===m.res):null, inPage=m.view==='page'&&!!r;
+ const st=r?(m.nav[r.id]||[]):[], top=st[st.length-1];
+ return html`<div class="sa">
+  <${SaStrip} own=${true} active=${inPage?r.id:'home'}/>
+  <div class="sa-body">
+   ${inPage?html`<${SaPage} r=${r} own=${true} sub=${!!top} label=${top?top.label:r.title} url=${top?top.url:r.url} kind=${top?'generic':r.kind}/>`:html`<div class="sa-scroll"><${SaHome} own=${true}/></div>`}
+   <${SaTool} own=${true} inPage=${inPage} hasRes=${!!r} canBack=${inPage&&!!top}/>
+  </div>
+ </div>`;
+}
+function JoinView(){
+ const m=S.me;
+ return html`<div class="sa"><div class="sa-body"><div class="sa-scroll"><div class="sa-col" style="padding-top:28px">
+  <div class="sa-hero"><${HeroDeco}/><h2>수업 도구</h2><p>${S.sess?'선생님이 알려 준 참여 코드를 입력하면 수업에 참여할 수 있습니다':'진행 중인 수업 세션이 없습니다. 선생님이 세션에 추가하면 자동으로 열립니다'}</p></div>
+  <div class="sa-card sa-join"><b>참여 코드로 참여</b><small>선생님 화면에 보이는 6자리 코드를 입력하세요</small>
+   <div class="jr"><input class="inp g" aria-label="참여 코드" placeholder="ABCDEF" maxlength="6" value=${m.code} onInput=${e=>A.meCode(e.target.value)} onKeyDown=${e=>{ if(e.key==='Enter') A.meJoin(); }}/><button class="pill g" onClick=${A.meJoin}>참여</button></div>
+   ${m.codeErr&&html`<div class="err">${m.codeErr}</div>`}</div>
+ </div></div></div></div>`;
+}
+const LOCK_ART=`<rect x="78" y="40" width="36" height="42" rx="8" fill="#C7D6F8"/><path d="M85 42v-8a11 11 0 0 1 22 0v8" fill="none" stroke="#5B7FD4" stroke-width="5" stroke-linecap="round"/><circle cx="96" cy="58" r="6" fill="#4E6FC4"/><rect x="93.5" y="60" width="5" height="13" rx="2.5" fill="#4E6FC4"/><circle cx="52" cy="48" r="10" fill="#E8ECF9"/><circle cx="64" cy="34" r="4.5" fill="#E9604A"/><path d="M38 62c8-6 16-2 20 4" stroke="#C7D6F8" stroke-width="4" fill="none" stroke-linecap="round"/><circle cx="136" cy="42" r="8" fill="none" stroke="#5B7FD4" stroke-width="4"/><path d="M140 50l9 9" stroke="#5B7FD4" stroke-width="4" stroke-linecap="round"/><path d="M140 62l14-5-5 14z" fill="#F2A93B"/><circle cx="122" cy="70" r="3.4" fill="#2E7D4F"/><circle cx="152" cy="80" r="6" fill="none" stroke="#C7D6F8" stroke-width="3"/>`;
+const PauseScreen=()=>html`<div class="paused" role="alert"><div class="pcard">
+ <svg class="ill" viewBox="0 0 190 110" aria-hidden="true" dangerouslySetInnerHTML=${{__html:LOCK_ART}}></svg>
+ <span class="clockpill"><${Ic} n="timer"/>${clock(S.now)}<${Ic} n="wifi"/><${Ic} n="batt"/></span>
+ <h2>선생님이 모든 기기를 잠갔습니다</h2>
+ <p>선생님이 세션을 다시 시작하면 계속할 수 있습니다</p>
+</div></div>`;
+const WatchPill=({cd,lift})=>cd>0
+ ?html`<div class=${'sa-watch'+(lift?' lift':'')} role="status"><span class="n">${cd}</span><span>${TEACHER}님이 곧 내 화면을 봅니다</span></div>`
+ :html`<div class=${'sa-watch'+(lift?' lift':'')} role="status"><${Ic} n="eye"/><span>${TEACHER}님이 내 화면을 보고 있습니다.</span></div>`;
+const ctTitle=()=>html`<span class="appic"><${Ic} n="app"/></span><span class="ttl">수업 도구</span>`;
+
+function StudentScreen({mirror}){
+ const m=S.me, joined=!!(S.sess&&S.joined.me), focus=joined&&focusOn(), pz=joined&&paused();
+ const ctShown=m.ctOpen&&(m.win==='ct'||focus);
+ const v=S.viewing, watching=!!(joined&&v&&v.id==='me');
+ const cd=watching?3-Math.floor((S.now-v.since)/1000):0;
+ const b=BTABS.find(x=>x.key===m.btab);
+ const apps=[
+  {label:'브라우저',icon:'globe',bg:'#FFFFFF',fg:'#1A73E8',open:true,act:!ctShown,on:()=>A.meWin('browser')},
+  {label:'수업 도구',icon:'app',bg:'#7B4FD6',fg:'#FFFFFF',open:m.ctOpen,act:ctShown,on:()=>A.meWin('ct')},
+ ];
+ return html`<div class="scr" inert=${mirror?true:undefined}>
+  <div class=${'desk'+(focus?' full':'')}>
+   ${ctShown?html`<div class=${'win'+(focus?' max':'')}>
+     ${!focus&&html`<div class="win-t g">${ctTitle()}<div class="wb"><button aria-label="최소화" onClick=${A.meClose}><${Ic} n="minus"/></button><button aria-label="최대화" tabindex="-1"><${Ic} n="square"/></button><button aria-label="닫기" onClick=${A.meClose}><${Ic} n="x"/></button></div></div>`}
+     <div class="win-b">${joined?html`<${StudentApp}/>`:html`<${JoinView}/>`}</div></div>`
+   :html`<div class="win">
+     <div class="tabs" role="tablist">${BTABS.map(t=>html`<button class="tab" role="tab" aria-selected=${t.key===m.btab} onClick=${()=>A.meBtab(t.key)}><${Ic} n=${t.kind==='newtab'?'search':t.kind==='game'?'grid':'play'}/><span>${t.title}</span></button>`)}</div>
+     <div class="omni"><button class="ib" aria-label="뒤로" tabindex="-1"><${Ic} n="arrowl"/></button><div class="url"><${Ic} n="globe"/><span>${b.url||'검색어 또는 URL 입력'}</span></div></div>
+     <div class="page"><${PageMock} kind=${b.kind} title=${b.title} url=${b.url}/></div></div>`}
+  </div>
+  ${!focus&&html`<${Shelf} apps=${apps} extra=${joined&&html`<span class="pill2 hide-s"><${Ic} n="timer"/>${minsLeft()}분 남음</span>`}/>`}
+  ${joined&&S.cap.allow&&m.cap&&html`<${CapBox} who="s"/>`}
+  ${pz&&html`<${PauseScreen}/>`}
+  ${watching&&html`<${WatchPill} cd=${cd} lift=${!!(joined&&S.cap.allow&&m.cap&&!m.top)}/>`}
+  ${!mirror&&html`<${Toasts} side="s" hi=${focus}/>`}
+ </div>`;
+}
+function VirtualScreen({id}){
+ const a=actOf(id)||HOME, focus=focusOn(), pz=paused();
+ const inCT=!a.off&&a.kind!=='newtab';
+ const r=a.res?S.res.find(x=>x.id===a.res):null;
+ return html`<div class="scr">
+  <div class=${'desk'+(focus?' full':'')}>
+   <div class=${'win'+(focus?' max':'')}>
+    ${inCT?html`${!focus&&html`<div class="win-t g">${ctTitle()}</div>`}
+     <div class="win-b"><div class="sa"><${SaStrip} active=${r?r.id:'home'}/><div class="sa-body">${r?html`<${SaPage} r=${r} label=${a.title} url=${a.url} kind=${a.kind} sub=${false}/>`:html`<div class="sa-scroll"><${SaHome}/></div>`}<${SaTool} inPage=${!!r} hasRes=${!!r} canBack=${false}/></div></div></div>`
+    :html`<div class="tabs"><span class="tab" aria-selected="true"><span>${a.title}</span></span></div><div class="omni"><div class="url"><${Ic} n="globe"/><span>${a.url||'검색어 또는 URL 입력'}</span></div></div><div class="page"><${PageMock} kind=${a.kind} title=${a.title} url=${a.url}/></div>`}
+   </div>
+  </div>
+  ${!focus&&html`<${Shelf} apps=${[{label:'브라우저',icon:'globe',bg:'#FFFFFF',fg:'#1A73E8',open:true,act:!inCT},{label:'수업 도구',icon:'app',bg:'#7B4FD6',fg:'#FFFFFF',open:true,act:inCT}]}/>`}
+  ${pz&&html`<${PauseScreen}/>`}
+  <${WatchPill} cd=${0}/>
+ </div>`;
+}
+
+/* ---------- teacher: class tools app ---------- */
+const Dim=({label,children,wide})=>html`<div class="dim" onClick=${e=>{ if(e.target===e.currentTarget) A.dlg(null); }}><div class="dlg" role="dialog" aria-modal="true" aria-label=${label} style=${wide?'width:min(470px,100%)':''}>${children}</div></div>`;
+const meTag=id=>id==='me'?html`<span class="stag">${S.mode==='split'?'오른쪽 화면':'체험 학생'}</span>`:null;
+const Av=({id})=>html`<span class="av" style=${{background:avColor(id)}}>${STU[id].name.slice(-2)}</span>`;
+function Ring(){
+ const s=S.sess, f=s?Math.max(0,Math.min(1,(s.end-S.now)/(s.end-s.start))):1, C=2*Math.PI*9;
+ return html`<svg class="ring" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9" fill="none" stroke="#C4C7CC" stroke-width="2.2"/><circle cx="12" cy="12" r="9" fill="none" stroke="#2E6A96" stroke-width="2.2" stroke-linecap="round" stroke-dasharray=${`${(C*f).toFixed(2)} ${C.toFixed(2)}`} transform="rotate(-90 12 12)"/></svg>`;
+}
+const THead=({title,children})=>html`<div class="ta-head"><button class="ta-back" aria-label="뒤로" onClick=${()=>A.page('home')}><${Ic} n="back"/></button><h2>${title}</h2>${children}</div>`;
+const EMPTY_RES=`<g fill="none" stroke="currentColor" stroke-width="2.4" stroke-linejoin="round"><rect x="30" y="18" width="40" height="52" rx="4"/><path d="M38 26h24M38 34h24"/><path d="M22 26h8v52h-8z"/></g><circle cx="16" cy="60" r="5" fill="none" stroke="currentColor" stroke-width="2.4"/><path d="M78 30c6 4 6 12 0 16" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/><path d="M50 40c0-5 4-7 7-5s2 6-2 8v4" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"/><circle cx="55" cy="55" r="1.8" fill="currentColor"/>`;
+const EMPTY_STU=`<g fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><circle cx="34" cy="34" r="10"/><path d="M18 66c0-9 7-15 16-15s16 6 16 15"/><circle cx="62" cy="40" r="8"/><path d="M50 66c0-8 5.5-13 12-13s12 5 12 13"/></g>`;
+const EmptyBox=({art,title,desc})=>html`<div class="ta-empty"><svg class="big" viewBox="0 0 90 90" aria-hidden="true" dangerouslySetInnerHTML=${{__html:art}}></svg><b>${title}</b><span>${desc}</span></div>`;
+
+function THome(){
+ const t=S.t, sess=S.sess;
+ const items=html`<div class="ta-card">
+   <button class="ta-item" onClick=${()=>A.page('students')}><${Ic} n="students"/><span class="tx"><b>학생</b><small>이 세션에 참여할 학생 선택</small></span><span class="chev"><${Ic} n="fwd"/></span></button>
+   <button class="ta-item" onClick=${()=>A.page('res')}><${Ic} n="book"/><span class="tx"><b>리소스</b><small>이 세션에서 공유할 리소스 선택</small></span><span class="chev"><${Ic} n="fwd"/></span></button>
+  </div>
+  <div class="ta-two">
+   <button class=${'ta-flat'+(S.cap.mine||S.cap.allow?' on':'')} onClick=${()=>A.dlg({k:'cap'})}><${Ic} n="subtitles"/><span class="tx"><b>자막</b>${(S.cap.mine||S.cap.allow)&&html`<small>사용</small>`}</span></button>
+   <button class="ta-flat off" onClick=${()=>A.dlg({k:'display'})}><${Ic} n="cast"/><span class="tx"><b>화면 공유</b></span></button>
+  </div>`;
+ if(!sess) return html`<div class="ta-col">
+  <h2 class="ta-title idle">새로운 세션 시작</h2>
+  <p class="ta-sub">세션이 시작되면 학생의 기기에서 수업 도구를 통해 리소스가 자동으로 열립니다.</p>
+  ${items}
+  <div class="ta-foot" style="border:0; justify-content:flex-end; padding-right:2px">
+   <button class="pill tonal" disabled=${!S.roster.length&&!S.res.length&&!S.cap.mine} onClick=${A.resetSetup}>재설정</button>
+   <button class="pill fill" onClick=${()=>A.dlg({k:'details'})}>다음<${Ic} n="fwd"/></button>
+  </div>
+ </div>`;
+ return html`<div class="ta-col">
+  <h2 class="ta-title"><${Ic} n="sensors"/>진행 중인 세션</h2>
+  <div class="ta-code"><${Ic} n="personadd"/><span>참여 코드: ${sess.code}</span><button class="ib" aria-label="참여 코드 복사" title="복사" onClick=${A.copyCode}><${Ic} n="copy"/></button><i class="sep"></i><button class="ib" aria-label="참여 코드 크게 보기" title="크게 보기" onClick=${()=>A.dlg({k:'code'})}><${Ic} n="opennew"/></button></div>
+  ${items}
+  <div class="ta-view">
+   <div class="lbl">학생 뷰</div>
+   <div class="seg3"><span role="group" aria-label="학생 뷰">${VIEWS.map(([v,l])=>html`<button aria-pressed=${sess.view===v} onClick=${()=>A.setView(v)}>${l}</button>`)}</span></div>
+   <div class="desc">${viewDesc(sess.view)}</div>
+   <div class="ta-foot"><${Ring}/><span class="tx"><b>${minsLeft()}분 남음</b><small>종료 시간: ${clock(sess.end)}</small></span><span class="grow"></span>
+    <span class="anchor"><button class="pill tonal" aria-expanded=${t.menu==='time'} onClick=${()=>A.menu('time')}>추가<${Ic} n="caret"/></button>
+     ${t.menu==='time'&&html`<div class="menu up">${[5,10,15].map(n=>html`<button onClick=${()=>A.addTime(n)}>${n}분 추가</button>`)}</div>`}</span>
+    <button class="pill fill" onClick=${()=>A.end(false)}>세션 종료</button>
+   </div>
+  </div>
+ </div>`;
+}
+function TStudents(){
+ const sess=S.sess, ids=[...S.roster].sort((a,b)=>(b==='me')-(a==='me'));
+ const joinedN=S.roster.filter(id=>S.joined[id]).length;
+ return html`<div class="ta-col">
+  <${THead} title="학생"><button class="pill tonal" onClick=${()=>A.dlg({k:'class'})}>학생 추가하기</button><//>
+  ${sess&&ids.length>0&&html`<div class="ta-meta">참여 중 ${joinedN}명 / 전체 ${ids.length}명 · 학생 뷰: ${VIEWS.find(v=>v[0]===sess.view)[1]}</div>`}
+  ${!ids.length?html`<${EmptyBox} art=${EMPTY_STU} title="추가된 학생 없음" desc="Google 클래스룸 수업에서 학생을 추가하세요. 세션을 시작하면 학생의 기기에서 수업 도구가 자동으로 열립니다."/>`
+  :html`<div class="ta-rows">${ids.map(id=>{
+    const j=!!S.joined[id], a=actOf(id);
+    const sub=!sess?CLASSES.find(c=>c.id===STU[id].cls).name:!j?(id===ABSENT?'기기가 오프라인 상태입니다':'참여 대기 중'):a.title;
+    return html`<div class="ta-row" key=${id}><${Av} id=${id}/><span class="tx"><b>${full(id)}${meTag(id)}</b><small class=${a&&a.off?'off':''}>${sub}</small></span>
+     ${sess&&html`<button class="ib" aria-label=${full(id)+' 화면 보기'} title="화면 보기" disabled=${!j} onClick=${()=>A.watch(id)}><${Ic} n="eye"/></button>`}
+     <button class="ib" aria-label=${full(id)+' 삭제'} title="삭제" onClick=${()=>A.removeStudent(id)}><${Ic} n="xcircle"/></button></div>`; })}</div>`}
+ </div>`;
+}
+function TRes(){
+ const t=S.t;
+ return html`<div class="ta-col">
+  <${THead} title="리소스"><span class="anchor"><button class="pill tonal" aria-expanded=${t.menu==='addres'} onClick=${()=>A.menu('addres')}>리소스 추가<${Ic} n="caret"/></button>
+   ${t.menu==='addres'&&html`<div class="menu"><button onClick=${()=>A.dlg({k:'assign'})}><${Ic} n="personfill"/>클래스룸 과제</button><button onClick=${()=>A.dlg({k:'tabs'})}><${Ic} n="tab"/>탭 열기</button><button onClick=${()=>A.dlg({k:'link'})}><${Ic} n="link"/>링크</button></div>`}</span><//>
+  ${!S.res.length?html`<${EmptyBox} art=${EMPTY_RES} title="추가된 리소스 없음" desc="Google 클래스룸 과제, 열린 탭 또는 링크를 추가하세요. 세션을 시작하면 학생이 수업 도구에서 이러한 리소스를 확인할 수 있습니다."/>`
+  :html`<div class="ta-rows">${S.res.map(r=>html`<div class="ta-row" key=${r.id}><${Fav} r=${r}/><span class="tx"><b>${r.title}</b><small>${rSub(r)}</small></span>
+    <button class="ib" aria-label=${r.title+' 탐색 설정'} title="탐색 설정" onClick=${()=>A.dlg({k:'nav',id:r.id})}><${Ic} n="gear"/></button>
+    <button class="ib" aria-label=${r.title+' 삭제'} title="삭제" onClick=${()=>A.removeRes(r.id)}><${Ic} n="xcircle"/></button></div>`)}</div>`}
+ </div>`;
+}
+function SayBox(){
+ const [txt,setTxt]=useState('');
+ const go=()=>{ if(txt.trim()){ A.say({ko:txt.trim()}); setTxt(''); } };
+ return html`<div class="says">${SAY.map(l=>html`<button onClick=${()=>A.say(l)}><${Ic} n="mic"/><span>${l.ko}</span></button>`)}</div>
+  <div class="sayrow" style="padding:0"><input class="inp" aria-label="직접 입력해서 말하기" placeholder="직접 입력해서 말하기" value=${txt} onInput=${e=>setTxt(e.target.value)} onKeyDown=${e=>{ if(e.key==='Enter') go(); }}/><button class="pill fill" onClick=${go}>보내기</button></div>`;
+}
+function DlgCap(){
+ const c=S.cap, sess=S.sess;
+ const row=(k,t,dis)=>html`<div class=${'ta-tg'+(dis?' off':'')}><span class="tx" style=${dis?'color:#9AA0A6':''}>${t}</span><button class="sw" role="switch" aria-checked=${!!c[k]} aria-label=${t} disabled=${dis} onClick=${()=>A.cap(k,!c[k])}></button></div>`;
+ return html`<${Dim} label="자막 및 번역" wide=${true}>
+  <div style="display:flex;align-items:flex-start;gap:10px"><h3 style="flex:1">자막 및 번역</h3><button class="ib" aria-label="닫기" onClick=${()=>A.dlg(null)}><${Ic} n="x"/></button></div>
+  <p class="note" style="margin:-6px 0 4px">말하는 동안 기기의 마이크를 통해 실시간 자막이 자동으로 생성됩니다.</p>
+  <div class="ta-card" style="border-radius:12px">
+   ${row('mine','내 화면에 자막 표시',false)}
+   ${row('allow','학생이 자막을 사용하도록 허용',!sess)}
+   ${row('tr','학생이 번역하도록 허용',!sess||!c.allow)}
+  </div>
+  <p class="note" style="margin:4px 0 0">체험판에서는 마이크 대신 문장을 눌러 말한 것처럼 보냅니다.</p>
+  ${sess?html`<${SayBox}/>`:html`<p class="note" style="margin:0">세션을 시작하면 말하기를 해 볼 수 있습니다.</p>`}
+ <//>`;
+}
+function DlgDetails(){
+ const p=S.prefs;
+ return html`<${Dim} label="세션 세부정보 설정"><h3>세션 세부정보 설정</h3>
+  <div>
+   <div class="durbox"><div class="row"><input type="number" min="5" max="240" aria-label="세션 길이(분)" value=${String(p.dur)} onInput=${e=>A.setDur(parseInt(e.target.value,10))}/><span class="u">분</span></div>
+    <small>종료 시간: ${clock(S.now+p.dur*60000)}</small><small>나중에 시간을 추가할 수 있습니다.</small></div>
+   <div class="viewbox"><div class="lbl">학생 뷰</div>
+    <div class="seg3"><span role="group" aria-label="학생 뷰">${VIEWS.slice(0,2).map(([v,l])=>html`<button aria-pressed=${p.view===v} onClick=${()=>A.setPrefView(v)}>${l}</button>`)}</span></div>
+    <div class="desc">${viewDesc(p.view)}</div></div>
+  </div>
+  <div class="info"><${Ic} n="info"/><span>Google 클래스룸을 사용하여 학생을 추가하면 학생의 기기에서 수업 도구가 자동으로 열립니다.</span></div>
+  <div class="acts"><button class="pill tonal" onClick=${()=>A.dlg(null)}>취소</button><button class="pill fill" onClick=${A.start}>세션 시작</button></div><//>`;
+}
+function DlgAddStudents(){
+ const [cls,setCls]=useState(null); const [sel,setSel]=useState([]);
+ if(!cls) return html`<${Dim} label="수업을 선택하세요"><h3>수업을 선택하세요</h3>
+  <div class="picks">${CLASSES.map(c=>html`<button class="chk" key=${c.id} style="border:0;background:none;width:100%;text-align:left" onClick=${()=>{ setCls(c); setSel(c.ids.filter(id=>!S.roster.includes(id))); }}><span class="av" style=${{background:avColor(c.id),width:'26px',height:'26px'}}>${c.ids.length}</span><span class="tx" style="flex:1">${c.name}</span></button>`)}</div>
+  <div class="acts"><button class="pill tonal" onClick=${()=>A.dlg(null)}>취소</button></div><//>`;
+ const avail=cls.ids.filter(id=>!S.roster.includes(id));
+ const all=avail.length>0&&sel.length===avail.length;
+ const tog=id=>setSel(sel.includes(id)?sel.filter(x=>x!==id):[...sel,id]);
+ return html`<${Dim} label="학생 선택"><h3>"${cls.name}"에서 학생 선택</h3>
+  <div class="picks">
+   <label class="chk"><input type="checkbox" checked=${all} disabled=${!avail.length} onChange=${()=>setSel(all?[]:avail)}/><span class="tx">전체 선택(${cls.ids.length}개)</span></label>
+   ${cls.ids.map(id=>{ const added=S.roster.includes(id); return html`<label class=${'chk'+(added?' dis':'')} key=${id}><input type="checkbox" checked=${added||sel.includes(id)} disabled=${added} onChange=${()=>tog(id)}/><${Av} id=${id}/><span class="tx">${full(id)}${meTag(id)}${added&&html`<small>이미 추가됨</small>`}</span></label>`; })}
+  </div>
+  <div class="acts"><button class="pill tonal" style="margin-right:auto" onClick=${()=>setCls(null)}>뒤로</button><button class="pill tonal" onClick=${()=>A.dlg(null)}>취소</button><button class="pill fill" disabled=${!sel.length} onClick=${()=>A.addStudents(sel)}>학생 ${sel.length}명 추가</button></div><//>`;
+}
+function DlgPick({kind}){
+ const items=kind==='assign'?CAT.assignment:CAT.tab, has=k=>S.res.some(r=>r.key===k), free=items.filter(x=>!has(x.key));
+ const [sel,setSel]=useState([]);
+ const tog=k=>setSel(sel.includes(k)?sel.filter(x=>x!==k):[...sel,k]);
+ const all=free.length>0&&free.every(x=>sel.includes(x.key));
+ return html`<${Dim} label=${kind==='assign'?'클래스룸 과제 선택':'열려 있는 탭 선택'}><h3>${kind==='assign'?'클래스룸 과제 선택':'열려 있는 탭 선택'}</h3>
+  <div class="picks">
+   <label class=${'chk'+(free.length?'':' dis')}><input type="checkbox" checked=${all} disabled=${!free.length} onChange=${()=>setSel(all?[]:free.map(x=>x.key))}/><span class="tx">${kind==='assign'?'6학년 3반 과제 전체':`Chrome 창 1(${items.length})`}</span></label>
+   ${items.map(x=>{ const ad=has(x.key); return html`<label class=${'chk'+(ad?' dis':'')} key=${x.key} style="padding-left:22px"><input type="checkbox" checked=${ad||sel.includes(x.key)} disabled=${ad} onChange=${()=>tog(x.key)}/><${Fav} r=${x}/><span class="tx">${x.title}${ad&&html`<small>이미 공유됨</small>`}</span></label>`; })}
+  </div>
+  <div class="acts"><button class="pill tonal" onClick=${()=>A.dlg(null)}>취소</button><button class="pill fill" disabled=${!sel.length} onClick=${()=>A.addRes(items.filter(x=>sel.includes(x.key)))}>${kind==='assign'?`과제 ${sel.length}개 추가`:`탭 ${sel.length}개 추가`}</button></div><//>`;
+}
+function DlgLink(){
+ const [url,setUrl]=useState(''); const [ttl,setTtl]=useState(''); const [err,setErr]=useState('');
+ const add=()=>{ const u=url.trim().replace(/^https?:\/\//i,''); if(!/^[^\s\/]+\.[^\s\/]{2,}/.test(u)){ setErr('www.example.com처럼 도메인이 포함된 주소를 입력하세요'); return; } A.addRes([{key:uid(),type:'link',title:ttl.trim()||host(u),url:u,kind:'generic'}]); };
+ return html`<${Dim} label="링크 추가"><h3>링크 추가</h3>
+  <input class="inp" aria-label="링크 입력" placeholder="링크 입력" value=${url} onInput=${e=>{ setUrl(e.target.value); setErr(''); }} onKeyDown=${e=>{ if(e.key==='Enter') add(); }}/>
+  <input class="inp" aria-label="표시 이름" placeholder="표시 이름 (선택)" value=${ttl} onInput=${e=>setTtl(e.target.value)}/>
+  ${err&&html`<div class="err">${err}</div>`}
+  <div class="acts"><button class="pill tonal" onClick=${()=>A.dlg(null)}>취소</button><button class="pill fill" disabled=${!url.trim()} onClick=${add}>추가</button></div><//>`;
+}
+function DlgNav({id}){
+ const r=S.res.find(x=>x.id===id);
+ const [v,setV]=useState(r?r.restrict:'site'); const [ext,setExt]=useState(r?r.ext:false); const [info,setInfo]=useState(false);
+ if(!r) return null;
+ const changed=v!==r.restrict||(v!=='none'&&ext)!==(r.restrict!=='none'&&r.ext);
+ return html`<${Dim} label="탐색 설정"><h3>탐색 설정</h3><div class="for">${r.title}용</div>
+  <div class="sel"><select aria-label="탐색 범위" value=${v} onChange=${e=>setV(e.target.value)}>${RESTRICT.map(o=>html`<option value=${o.v}>${rOpt(o.v,r.url)}</option>`)}</select><${Ic} n="caret"/></div>
+  <label class=${'chk'+(v==='none'?' dis':'')}><input type="checkbox" checked=${ext&&v!=='none'} disabled=${v==='none'} onChange=${e=>setExt(e.target.checked)}/><span class="tx">외부 링크를 열 수 있음</span></label>
+  <button class="lnk" onClick=${()=>setInfo(!info)}>탐색 설정에 대해 자세히 알아보기</button>
+  ${info&&html`<p class="note">이 페이지로 제한됨: 공유한 페이지만 볼 수 있음 · 이 사이트로 제한됨: 같은 사이트 안에서만 이동 · Google 웹사이트로 제한됨: 같은 사이트와 Google 사이트까지 · 제한 없음: 어디로든 이동. ‘외부 링크를 열 수 있음’을 켜면 페이지 안의 다른 사이트 링크도 열립니다.</p>`}
+  <div class="acts"><button class="pill tonal" onClick=${()=>A.dlg(null)}>취소</button><button class="pill fill" disabled=${!changed} onClick=${()=>A.setNav(id,v,ext&&v!=='none')}>적용</button></div><//>`;
+}
+const DlgDisplay=()=>html`<${Dim} label="교실 디스플레이 연결"><h3>교실 디스플레이 연결</h3>
+ <p class="note" style="margin:0">실제 수업 도구에서는 교실 디스플레이에 ‘수업 도구 디스플레이’ 앱을 열고, 화면에 표시된 코드를 입력해 내 화면이나 학생 화면을 무선으로 공유합니다.</p>
+ <div class="codetiles" style="justify-content:flex-start">${[0,1,2,3].map(()=>html`<i style="width:44px;height:52px;font-size:1.4em;background:#EDF1F7"></i>`)}</div>
+ <p class="note" style="margin:0">이 체험판에는 화면 공유가 들어 있지 않습니다.</p>
+ <div class="acts"><button class="pill fill" onClick=${()=>A.dlg(null)}>확인</button></div><//>`;
+function CodeWin(){
+ const code=S.sess.code;
+ return html`<div class="codewin" role="dialog" aria-label="참여 코드">
+  <div class="win-t"><span class="appic"><${Ic} n="app"/></span><span class="ttl">수업 도구 - 참여 코드</span><div class="wb"><button aria-label="최소화" onClick=${()=>A.dlg(null)}><${Ic} n="minus"/></button><button aria-label="최대화" tabindex="-1"><${Ic} n="square"/></button><button aria-label="닫기" onClick=${()=>A.dlg(null)}><${Ic} n="x"/></button></div></div>
+  <div class="codebody"><p>수업 도구를 열고 다음 코드를 입력하세요</p>
+   <div class="codetiles">${code.split('').map((c,i)=>html`${i===3?html`<i class="sp"></i>`:null}<i>${c}</i>`)}</div>
+  </div>
+ </div>`;
+}
+function ViewerWin(){
+ const v=S.viewing, a=actOf(v.id), cd=3-Math.floor((S.now-v.since)/1000), name=full(v.id);
+ return html`<div class="vwin" role="dialog" aria-label=${name+'님의 화면'}>
+  <div class="win-t"><span class="appic"><${Ic} n="app"/></span><span class="ttl">수업 도구 - ${name}님의 화면</span><div class="wb"><button aria-label="최소화" onClick=${A.unwatch}><${Ic} n="minus"/></button><button aria-label="최대화" tabindex="-1"><${Ic} n="square"/></button><button aria-label="화면 보기 닫기" onClick=${A.unwatch}><${Ic} n="x"/></button></div></div>
+  <div class="vbody">
+   <div class="vpill"><${Ic} n="eye"/><span>${!a?`${name}님이 세션에 없습니다`:cd>0?`${name}님의 화면에 연결하는 중…`:`${name}님의 화면을 보는 중`}</span></div>
+   ${!a?null:cd>0?html`<div class="waitbox"><div class="n">${cd}</div><small>학생 기기에 알림이 표시된 뒤 화면이 보입니다</small></div>`
+    :html`<${Fit}>${v.id==='me'?html`<${StudentScreen} mirror=${true}/>`:html`<${VirtualScreen} id=${v.id}/>`}<//>`}
+  </div>
+ </div>`;
+}
+function TeacherApp(){
+ const t=S.t, d=t.dlg;
+ return html`<div class="ta">${t.page==='students'?html`<${TStudents}/>`:t.page==='res'?html`<${TRes}/>`:html`<${THome}/>`}</div>
+  ${t.menu&&html`<div style="position:absolute;inset:0;z-index:44" onClick=${()=>A.menu(null)}></div>`}
+  ${d&&d.k==='nav'&&html`<${DlgNav} id=${d.id} key=${d.id}/>`}
+  ${d&&d.k==='class'&&html`<${DlgAddStudents}/>`}
+  ${d&&(d.k==='assign'||d.k==='tabs')&&html`<${DlgPick} kind=${d.k} key=${d.k}/>`}
+  ${d&&d.k==='link'&&html`<${DlgLink}/>`}
+  ${d&&d.k==='cap'&&html`<${DlgCap}/>`}
+  ${d&&d.k==='details'&&html`<${DlgDetails}/>`}
+  ${d&&d.k==='display'&&html`<${DlgDisplay}/>`}
+  ${d&&d.k==='code'&&S.sess&&html`<${CodeWin}/>`}`;
+}
+function TeacherScreen(){
+ const t=S.t, sess=S.sess, cur=CAT.tab.find(x=>x.key===t.btab)||CAT.tab[0], viewing=!!(S.viewing&&sess);
+ const apps=[{label:'브라우저',icon:'globe',bg:'#FFFFFF',fg:'#1A73E8',open:true,act:t.win==='browser'&&!viewing,on:()=>A.tWin('browser')},{label:'수업 도구',icon:'app',bg:'#7B4FD6',fg:'#FFFFFF',open:true,act:t.win==='ct'||viewing,on:()=>A.tWin('ct')}];
+ return html`<div class="scr">
+  <div class="desk">
+   ${t.win==='ct'?html`<div class="win"><div class="win-t">${ctTitle()}<div class="wb"><button aria-label="최소화" onClick=${()=>A.tWin('browser')}><${Ic} n="minus"/></button><button aria-label="최대화" tabindex="-1"><${Ic} n="square"/></button></div></div><div class="win-b"><${TeacherApp}/></div></div>`
+   :html`<div class="win"><div class="tabs" role="tablist">${CAT.tab.map(x=>html`<button class="tab" role="tab" aria-selected=${x.key===cur.key} onClick=${()=>A.tTab(x.key)}><${Ic} n=${x.kind==='video'?'play':x.kind==='table'?'grid':'globe'}/><span>${x.title}</span></button>`)}</div>
+    <div class="omni"><button class="ib" tabindex="-1" aria-label="뒤로"><${Ic} n="arrowl"/></button><div class="url"><${Ic} n="globe"/><span>${cur.url}</span></div></div>
+    <div class="page"><${PageMock} kind=${cur.kind} title=${cur.title} url=${cur.url}/></div></div>`}
+   ${viewing&&html`<div class="win" style="z-index:5"><${ViewerWin}/></div>`}
+  </div>
+  <${Shelf} apps=${apps} extra=${sess&&html`<span class="pill2 hide-s"><${Ic} n="sensors"/>${minsLeft()}분 남음</span>`}/>
+  ${S.cap.mine&&html`<${CapBox} who="t"/>`}
+  <${Toasts} side="t"/>
+ </div>`;
+}
+
+/* ---------- landing & shell ---------- */
+function Ill({kind}){
+ const laptop=(x,y,w,h,inner)=>`<rect x="${x}" y="${y}" width="${w}" height="${h}" rx="9" fill="#23282C"/>${inner}<rect x="${x-18}" y="${y+h}" width="${w+36}" height="8" rx="4" fill="#4A5157"/>`;
+ const bar=(x,y,w,c)=>`<rect x="${x}" y="${y}" width="${w}" height="3.2" rx="1.6" fill="${c}"/>`;
+ const tIn=(x,y,w,h)=>{ const cw=w*.64, c0=x+(w-cw)/2, cx=x+w/2;
+  return `<rect x="${x}" y="${y}" width="${w}" height="${h}" rx="3" fill="#E1ECF8"/>`
+  +`<rect x="${cx-cw*.26}" y="${y+h*.07}" width="${cw*.52}" height="${h*.055}" rx="${h*.027}" fill="#C0643C"/>`
+  +`<rect x="${cx-cw*.2}" y="${y+h*.16}" width="${cw*.4}" height="${h*.07}" rx="${h*.035}" fill="#FFFFFF"/>`
+  +`<rect x="${c0}" y="${y+h*.28}" width="${cw}" height="${h*.21}" rx="4" fill="#FFFFFF"/><line x1="${c0}" y1="${y+h*.385}" x2="${c0+cw}" y2="${y+h*.385}" stroke="#E1ECF8" stroke-width="1.5"/>`
+  +bar(c0+cw*.12,y+h*.315,cw*.3,'#3C4043')+bar(c0+cw*.12,y+h*.42,cw*.36,'#3C4043')
+  +`<rect x="${c0}" y="${y+h*.52}" width="${cw}" height="${h*.1}" rx="4" fill="#FFFFFF"/>`+bar(c0+cw*.12,y+h*.555,cw*.34,'#3C4043')
+  +`<rect x="${c0}" y="${y+h*.65}" width="${cw}" height="${h*.29}" rx="4" fill="#FFFFFF"/>`
+  +`<rect x="${c0+3}" y="${y+h*.68}" width="${cw/2-4.5}" height="${h*.12}" rx="3" fill="#D5E4F5"/><rect x="${cx+1.5}" y="${y+h*.68}" width="${cw/2-4.5}" height="${h*.12}" rx="3" fill="#D5E4F5"/>`
+  +`<rect x="${c0+cw*.72}" y="${y+h*.84}" width="${cw*.24}" height="${h*.07}" rx="${h*.035}" fill="#2E6A96"/>`+bar(c0+cw*.06,y+h*.86,cw*.2,'#3C4043');
+ };
+ const sIn=(x,y,w,h)=>{ const cw=w*.66, c0=x+(w-cw)/2;
+  return `<rect x="${x}" y="${y}" width="${w}" height="${h}" rx="3" fill="#F0F3E2"/>`
+  +`<rect x="${c0}" y="${y+h*.06}" width="${cw}" height="${h*.34}" rx="8" fill="#E3F0C2"/><circle cx="${c0+cw*.7}" cy="${y+h*.17}" r="${h*.07}" fill="#C4DE95"/><circle cx="${c0+cw*.87}" cy="${y+h*.29}" r="${h*.06}" fill="#FFFFFF"/><circle cx="${c0+cw*.9}" cy="${y+h*.12}" r="${h*.045}" fill="#B7D487"/>`
+  +`<rect x="${c0+6}" y="${y+h*.18}" width="${cw*.36}" height="${h*.05}" rx="2" fill="#2E3126"/>`+bar(c0+6,y+h*.27,cw*.46,'#8A8D7C')
+  +`<rect x="${c0}" y="${y+h*.44}" width="${cw/2-2}" height="${h*.1}" rx="4" fill="#FBFDEE"/><rect x="${c0+cw/2+2}" y="${y+h*.44}" width="${cw/2-2}" height="${h*.1}" rx="4" fill="#FBFDEE"/><rect x="${c0+cw-13}" y="${y+h*.475}" width="9" height="${h*.035}" rx="${h*.018}" fill="#4B661F"/>`
+  +`<rect x="${c0}" y="${y+h*.58}" width="${cw}" height="${h*.36}" rx="5" fill="#FBFDEE"/>`
+  +[0,1,2].map(i=>`<rect x="${c0+5}" y="${y+h*(.65+i*.09)}" width="6" height="6" rx="1.5" fill="${['#E8710A','#1A73E8','#7B5CD6'][i]}"/>`+bar(c0+15,y+h*(.65+i*.09)+1.4,cw*.55,'#9A9D8C')).join('')
+  +`<rect x="${x+4}" y="${y+4}" width="${w*.16}" height="${h*.075}" rx="${h*.037}" fill="#FFFFFF"/>`;
+ };
+ let body='';
+ if(kind==='teacher') body=laptop(52,20,216,148,tIn(59,27,202,134));
+ if(kind==='student') body=laptop(52,20,216,148,sIn(59,27,202,134));
+ if(kind==='split') body=laptop(28,40,120,90,tIn(34,46,108,78))+laptop(172,40,120,90,sIn(178,46,108,78))
+  +`<circle cx="160" cy="85" r="13" fill="#F1C646"/><path d="M153 85h13M161 79l6 6-6 6" fill="none" stroke="#3A2E00" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>`;
+ return html`<svg viewBox="0 0 320 190" role="img" aria-label=${kind==='teacher'?'교사 크롬북의 진행 중인 세션 화면 그림':kind==='student'?'학생 크롬북의 수업 도구 화면 그림':'교사와 학생 크롬북이 나란히 있는 그림'} dangerouslySetInnerHTML=${{__html:body}}></svg>`;
+}
+const FEATS=[
+ ['세션 시작','학생과 리소스를 담고 세션 길이와 학생 뷰를 정해 시작, 참여 코드 안내','수업 도구가 자동으로 열리고 공유된 탭이 탭 목록에 나타남'],
+ ['학생 뷰: 탐색 · 집중 · 잠금','세 가지 중 하나를 골라 학생 기기의 사용 범위를 바꾸기','집중이면 수업 도구가 전체 화면으로 고정, 잠금이면 기기를 쓸 수 없음'],
+ ['리소스 · 탐색 설정','클래스룸 과제·탭·링크를 공유하고 리소스마다 탐색 범위와 외부 링크 허용 설정','공유된 탭을 열어 보고, 허용 범위 밖 링크는 안내 메시지와 함께 막힘'],
+ ['학생 화면 보기','학생 목록에서 지금 보는 탭을 확인하고 화면을 새 창으로 보기','3초 뒤 ‘…님이 내 화면을 보고 있습니다.’ 표시'],
+ ['자막 및 번역','내 화면 자막, 학생 자막·번역 허용, 말하기','실시간 자막을 켜고 언어·글자 크기·위치·배경색 바꾸기'],
+];
+function Landing(){
+ const E=[
+  ['teacher','교사로 입장','세션을 시작하고 학생·리소스 추가, 탐색 설정, 학생 뷰(탐색·집중·잠금), 학생 화면 보기, 자막을 직접 조작해요. 가상 학생들이 함께 반응해요.',''],
+  ['student','학생으로 입장','공유된 탭을 열고 집중·잠금 상태, 화면 보기 알림, 실시간 자막을 학생 자리에서 겪어 봐요. 선생님 동작은 옆의 리모컨으로 실행해요.',''],
+  ['split','분할 화면 체험','왼쪽은 교사, 오른쪽은 학생 크롬북이에요. 왼쪽에서 누른 결과가 오른쪽 화면에 바로 나타나요.','연수 시연에 추천'],
+ ];
+ return html`<main class="lp">
+  <header><span class="lp-eyebrow"><i></i>크롬북 · 수업 도구(Class tools) 모의 체험</span>
+   <h1>수업 도구 <em>체험실</em></h1>
+   <p class="lp-lead">선생님 크롬북에서 누른 버튼이 학생 크롬북에 어떻게 나타나는지, 로그인 없이 직접 눌러 보며 익혀요.</p></header>
+  <section class="entries" aria-label="체험 입장">${E.map(([k,t,d,tag])=>html`<button class="entry" onClick=${()=>A.enter(k)}>
+   <span class="ill"><${Ill} kind=${k}/></span>${tag&&html`<span class="tag">${tag}</span>`}
+   <h2>${t}</h2><p>${d}</p><span class="go">${t}<svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></button>`)}</section>
+  <section class="feat"><h3>체험할 수 있는 기능</h3>
+   <div class="feat-wrap"><table><thead><tr><th scope="col">기능</th><th scope="col">교사 크롬북에서</th><th scope="col">학생 크롬북에서</th></tr></thead>
+   <tbody>${FEATS.map(([a,b,c])=>html`<tr><th scope="row">${a}</th><td>${b}</td><td>${c}</td></tr>`)}</tbody></table></div></section>
+  <p class="lp-note">연수·안내용 모의 체험 화면으로, Google이 만든 공식 도구가 아니에요. 실제 수업 도구 화면을 참고해 만들었지만 버전에 따라 구성과 문구가 다를 수 있어요. 실제 수업 도구는 학교에서 관리하는 크롬북(ChromeOS 137 이상)에서 라이선스와 관리자 설정(교사·학생 모드)이 갖춰져야 쓸 수 있어요. 학생 이름과 수업 자료는 모두 예시예요.</p>
+ </main>`;
+}
+function Bar(){
+ const modes=[['teacher','교사','teacher'],['student','학생','person'],['split','분할 화면','split']];
+ return html`<header class="bar">
+  <button class="brand" onClick=${()=>A.enter('landing')} aria-label="체험 첫 화면으로"><${Ic} n="app"/>수업 도구 체험실</button>
+  <nav class="seg" aria-label="체험 모드">${modes.map(([k,l,i])=>html`<button aria-pressed=${S.mode===k} onClick=${()=>A.enter(k)}><${Ic} n=${i}/>${l}</button>`)}</nav>
+  <div class="bar-r"><span class="sim-tag">모의 체험 · 예시 데이터</span><button class="ghost" onClick=${A.reset}><${Ic} n="reset"/>처음부터 다시</button></div>
+ </header>`;
+}
+function remoteStart(view){
+ const ids=CLASSES[0].ids.filter(id=>id!=='me'||S.remoteRoster);
+ up(s=>{ s.roster=ids.slice(); s.prefs.view=view; if(!s.res.length) s.res.push({...CAT.assignment[0],id:uid(),restrict:'site',ext:false}); });
+ A.start();
+}
+function Remote(){
+ const sess=S.sess, all=[...CAT.assignment,...CAT.tab], next=all.find(x=>!S.res.some(r=>r.key===x.key));
+ return html`<aside class="remote" aria-label="가상 선생님 리모컨">
+  <div class="r-head"><span class="r-av">서</span><div><b>가상 선생님</b><small>누르면 선생님이 한 동작이 학생 크롬북에 전달돼요</small></div></div>
+  ${!sess?html`
+   <label class="r-check"><input type="checkbox" checked=${S.remoteRoster} onChange=${e=>up(s=>{ s.remoteRoster=e.target.checked; })}/><span>김하늘을 학생 명단에 넣고 시작<br/><small style="color:var(--ink-2)">끄면 참여 코드로 직접 들어가 봐요</small></span></label>
+   <div class="r-group"><span>세션 시작</span><div class="r-btns" style="flex-direction:column">
+    <button class="rbtn primary" onClick=${()=>remoteStart('explore')}><${Ic} n="playcircle"/>세션 시작 (탐색)</button>
+    <button class="rbtn" style="justify-content:center" onClick=${()=>remoteStart('focus')}><${Ic} n="lock"/>집중 모드로 시작</button></div></div>`
+  :html`
+   <div class="r-info"><span>참여 코드 <b>${sess.code}</b></span><span>${minsLeft()}분 남음 · ${S.joined.me?'김하늘 참여 중':'김하늘 아직 참여 전'}</span></div>
+   <div class="r-group"><span>학생 뷰</span><div class="r-btns">
+    ${VIEWS.map(([v,l])=>html`<button class="rbtn" aria-pressed=${sess.view===v} onClick=${()=>A.setView(v)}>${l}</button>`)}</div>
+    <small style="color:var(--ink-2);font-size:12.5px">${viewDesc(sess.view)}</small></div>
+   <div class="r-group"><span>리소스 공유</span><div class="r-btns"><button class="rbtn" disabled=${!next} onClick=${()=>next&&A.addRes([next])}><${Ic} n="send"/>${next?`‘${next.title}’ 공유`:'준비한 리소스를 모두 공유했어요'}</button></div></div>
+   <div class="r-group"><span>학생 화면 보기</span><div class="r-btns">${S.viewing?html`<button class="rbtn" aria-pressed="true" onClick=${A.unwatch}><${Ic} n="x"/>화면 보기 닫기</button>`:html`<button class="rbtn" disabled=${!S.joined.me} onClick=${()=>A.watch('me')}><${Ic} n="eye"/>김하늘 화면 보기</button>`}</div></div>
+   <div class="r-group"><span>자막 및 번역</span><div class="r-btns">
+    <button class="rbtn" aria-pressed=${S.cap.allow} onClick=${()=>A.cap('allow',!S.cap.allow)}><${Ic} n="subtitles"/>자막 허용</button>
+    <button class="rbtn" aria-pressed=${S.cap.tr} disabled=${!S.cap.allow} onClick=${()=>A.cap('tr',!S.cap.tr)}><${Ic} n="translate"/>번역 허용</button>
+    <button class="rbtn" onClick=${()=>{ A.say(SAY[S.sayIdx%SAY.length]); up(s=>{ s.sayIdx++; }); }}><${Ic} n="mic"/>말하기</button></div>
+    ${!S.cap.allow&&html`<small style="color:var(--ink-2);font-size:12.5px">학생 화면에 자막이 보이려면 ‘자막 허용’을 켜 주세요</small>`}</div>
+   <div class="r-btns"><button class="rbtn" onClick=${()=>A.addTime(5)}><${Ic} n="timer"/>5분 추가</button><button class="rbtn warn" onClick=${()=>A.end(false)}><${Ic} n="x"/>세션 종료</button></div>`}
+ </aside>`;
+}
+function Stage(){
+ const m=S.mode;
+ const lab=(dot,b,sub)=>html`<div class="devlabel"><span class=${'dot'+dot}></span><b>${b}</b><span>${sub}</span></div>`;
+ if(m==='teacher') return html`<main class="stage teacher"><div class="devcol">${lab('','교사 크롬북',TEACHER+' 선생님')}<div class="dev"><${TeacherScreen}/></div></div></main>`;
+ if(m==='student') return html`<main class="stage student"><div class="devcol">${lab(' s','학생 크롬북',full('me')+' · 6학년 3반')}<div class="dev"><${StudentScreen}/></div></div><${Remote}/></main>`;
+ return html`<main class="stage split"><div class="devcol">${lab('','교사',TEACHER+' 선생님 크롬북')}<div class="dev"><${TeacherScreen}/></div></div><div class="devcol">${lab(' s','학생',full('me')+' 크롬북')}<div class="dev"><${StudentScreen}/></div></div></main>`;
+}
+function App(){
+ const [,force]=useReducer(x=>x+1,0);
+ useEffect(()=>{ subs.add(force); return ()=>subs.delete(force); },[]);
+ return S.mode==='landing'?html`<${Landing}/>`:html`<${Bar}/><${Stage}/>`;
+}
+document.addEventListener('keydown',e=>{
+ if(e.key!=='Escape'||S.mode==='landing') return;
+ if(S.t.menu) A.menu(null); else if(S.t.dlg) A.dlg(null); else if(S.viewing) A.unwatch();
+});
+const root=document.getElementById('root');
+root.innerHTML='';
+render(html`<${App}/>`,root);
+})();
+</script>
+</body>
+</html>
